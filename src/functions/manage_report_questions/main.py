@@ -1,10 +1,21 @@
 from infrastructure.dynamodb_repository import DynamoDBClient
 from services.question_controller import QuestionController
 
-def main():
+
+def process_questions_batch(questions_batch):
     dynamodb_client = DynamoDBClient()
     dynamodb_client.db_setup()
+    
+    question_controller = QuestionController(questions_batch, dynamodb_client)
+    result = question_controller.batch_create()
+    
+    return result
 
+
+def main():
+    """
+    Main function for local testing. Can be run directly or via Lambda handler.
+    """
     questions_batch = [
         {
             "descriptor": "D1",
@@ -28,9 +39,9 @@ def main():
             "answer": "B"
         }
     ]
+    
+    process_questions_batch(questions_batch)
 
-    question_controller = QuestionController(questions_batch, dynamodb_client)
-    question_controller.batch_create()
 
-
-main()
+if __name__ == "__main__":
+    main()

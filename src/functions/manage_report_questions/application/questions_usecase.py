@@ -4,6 +4,8 @@ from domain.entities.question import DifficultyLevel
 
 class CreateQuestionUseCase:
 
+    questions_table_name = "saeb_questions"
+
     def __init__(self, repository):
         self.repository = repository
 
@@ -24,5 +26,5 @@ class CreateQuestionUseCase:
             options=options,
             answer=answer
         )
-        self.repository.save("saeb_questions", new_question)
+        self.repository.save(self.questions_table_name, new_question)
         return new_question
