@@ -1,12 +1,7 @@
-from application.process_student_data import ProcessStudentData
-from infrastructure.report_generator import ReportGenerator
+from infrastructure.dynamodb import db_setup
 
 def main():
-    processor = ProcessStudentData()
-    students, diagnosis = processor.execute("student_spreadsheet.xlsx")
+    db_setup()
 
-    report = ReportGenerator()
-    report.generate(students, diagnosis)
 
-if __name__ == "__main__":
-    main()
+main()
