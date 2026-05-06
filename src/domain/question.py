@@ -1,72 +1,29 @@
 
 from enum import Enum
+from dataclasses import dataclass
+from typing import List
 
 class DifficultyLevel(Enum):
     EASY = "Fácil"
     MEDIUM = "Médio"
     HARD = "Difícil"
 
+@dataclass
 class Question:
-    def __init__(self, descriptor:str, level: DifficultyLevel, description: str, options: list, answer: str):
-        self.descriptor = descriptor
-        self.level = level
-        self.description = description
-        self.options = options
-        self.answer = answer
+    descriptor: str
+    level: DifficultyLevel
+    description: str
+    options: List[str]
+    answer: str
 
-    @property
-    def descriptor(self):
-        return self._descriptor
-
-    @descriptor.setter
-    def descriptor(self, d):
-        if not d: raise Exception("descriptor cannot be empty")
-        self._descriptor = d
-
-    @property
-    def level(self):
-        return self._level
-
-    @level.setter
-    def level(self, l):
-        if not isinstance(l, DifficultyLevel):
-            raise Exception("level must be an instance of DifficultyLevel")
-        self._level = l
-
-    @property
-    def level(self):
-        return self._level
-
-    @level.setter
-    def level(self, l):
-        if not isinstance(l, DifficultyLevel):
-            raise Exception("level must be an instance of DifficultyLevel")
-        self._level = l
-
-    @property
-    def description(self):
-        return self._description
-    
-    @description.setter
-    def description(self, d):
-        if not d: raise Exception("description cannot be empty")
-        self._description = d
-
-    @property
-    def options(self):
-        return self._options
-
-    @options.setter
-    def options(self, o):
-        if not isinstance(o, list):
-            raise Exception("options must be a list")
-        self._options = o
-
-    @property
-    def answer(self):
-        return self._answer
-    
-    @answer.setter
-    def answer(self, a):
-        if not a: raise Exception("answer cannot be empty")
-        self._answer = a
+    def __post_init__(self):
+        if not self.descriptor or not isinstance(self.descriptor, str):
+            raise ValueError("descriptor cannot be empty and must be a string")
+        if not self.level or not isinstance(self.level, DifficultyLevel):
+            raise ValueError("level cannot be empty and must be a DifficultyLevel type")
+        if not self.description or not isinstance(self.description, str):
+            raise ValueError("description cannot be empty and must be a string")
+        if not isinstance(self.options, list) or not all(isinstance(i, str) for i in self.options):
+            raise ValueError("options cannot be empty and must be a list of strings")
+        if not self.answer or not isinstance(self.answer, str):
+            raise ValueError("answer cannot be empty and must be a string")
