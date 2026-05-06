@@ -10,6 +10,7 @@ class DifficultyLevel(Enum):
 
 @dataclass
 class Question:
+    id: str
     descriptor: str
     level: DifficultyLevel
     description: str
@@ -17,6 +18,8 @@ class Question:
     answer: str
 
     def __post_init__(self):
+        if not self.id or not isinstance(self.id, str):
+            raise ValueError("id cannot be empty and must be a string")
         if not self.descriptor or not isinstance(self.descriptor, str):
             raise ValueError("descriptor cannot be empty and must be a string")
         if not self.level or not isinstance(self.level, DifficultyLevel):

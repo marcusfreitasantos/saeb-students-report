@@ -1,5 +1,5 @@
 import pandas as pd
-from domain.student import Student
+from functions.manage_report_questions.domain.entities.student import Student
 from src.services.ipp_calculator import IPPCalculator
 from infrastructure.excel_reader import ExcelReader
 
