@@ -6,5 +6,16 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
-      Handler: lambda.handler
+      Handler: main.handler
       Runtime: python3.12
+      Timeout: 30
+      Environment:
+        Variables:
+          AWS_REGION: us-east-1
+          DYNAMODB_ENDPOINT: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /questions/create
+            Method: post

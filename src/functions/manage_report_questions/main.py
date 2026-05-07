@@ -1,3 +1,4 @@
+import json
 from infrastructure.dynamodb_repository import DynamoDBClient
 from services.question_controller import QuestionController
 
@@ -12,36 +13,45 @@ def process_questions_batch(questions_batch):
     return result
 
 
-def main():
-    """
-    Main function for local testing. Can be run directly or via Lambda handler.
-    """
-    questions_batch = [
-        {
-            "descriptor": "D1",
-            "level": "Fácil",
-            "description": "No mapa abaixo, a localização da farmácia é dada pela coordenada (B, 3). [D1_MAPA]\nQual estabelecimento está localizado na coordenada (D, 5)?",
-            "options": ["A) Cinema", "B) Hospital", "C) Escola", "D) Supermercado", "E) Padaria"],
-            "answer": "B"
-        },
-        {
-            "descriptor": "D1",
-            "level": "Médio",
-            "description": "Um robô de limpeza percorre uma sala quadrada partindo do canto (1,1). Ele se desloca 4 unidades para a direita e 2 unidades para cima. [D1_ROBO]\nEm quais coordenadas o robô parou?",
-            "options": ["A) (5, 3)", "B) (4, 2)", "C) (1, 4)", "D) (5, 2)", "E) (3, 5)"],
-            "answer": "A"
-        },
-        {
-            "descriptor": "D1",
-            "level": "Médio",
-            "description": "No esquema de um cinema, as poltronas são identificadas por uma letra (fila) e um número (coluna). [D1_CINEMA]\nA poltrona de Pedro está na fila E, posição 4. Qual o código da sua poltrona?",
-            "options": ["A) 4E", "B) E4", "C) 5D", "D) D5"],
-            "answer": "B"
+def handler(event, context):
+    try:
+        # Parse the body from API Gateway event
+        body = event.get('body', '{}')
+        
+        # If body is a string, parse it; otherwise it's already a dict
+        if isinstance(body, str):
+            payload = json.loads(body)
+        else:
+            payload = body
+        
+        # Extract questions_batch from payload
+        questions_batch = payload.get('questions_batch', [])
+        
+        if not questions_batch:
+            return {
+                'statusCode': 400,
+                'headers': {'Content-Type': 'application/json'},
+                'body': json.dumps({'error': 'questions_batch is required'})
+            }
+        
+        result = process_questions_batch(questions_batch)
+        
+        return {
+            'statusCode': 200,
+            'headers': {'Content-Type': 'application/json'},
+            'body': json.dumps({'success': True, 'message': result})
         }
-    ]
     
-    process_questions_batch(questions_batch)
-
-
-if __name__ == "__main__":
-    main()
+    except json.JSONDecodeError as e:
+        return {
+            'statusCode': 400,
+            'headers': {'Content-Type': 'application/json'},
+            'body': json.dumps({'error': f'Invalid JSON in request body: {str(e)}'})
+        }
+    
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'headers': {'Content-Type': 'application/json'},
+            'body': json.dumps({'error': f'Internal server error: {str(e)}'})
+        }

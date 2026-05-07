@@ -21,4 +21,5 @@ class QuestionController:
     def batch_create(self):
         for batch in self.questions_batch:
             self.create(batch)
+        return f'All {str(len(self.questions_batch))} questions sucessfully created.'
 

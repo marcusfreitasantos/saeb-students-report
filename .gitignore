@@ -5,3 +5,12 @@ old/
 *.log
 *.pyc
 __pycache__/
+
+# Environment variables
+.env*
+
+# Build files
+.aws-sam/
+
+# Docker
+docker/
