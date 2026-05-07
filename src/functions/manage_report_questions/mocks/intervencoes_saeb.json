@@ -1,0 +1,703 @@
+{
+  "projeto": "EDUCAÇÃO INOVADORA",
+  "data_atualizacao": "2026-03-28",
+  "eixos_saeb": [
+    {
+      "eixo": "Espaço e Forma",
+      "descritores": [
+        {
+          "id": "D1",
+          "habilidade": "Localização e movimentação em mapas.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Desplugada",
+              "titulo": "Batalha Naval Humana",
+              "desafio_robotica": "Comandos de direção (x, y) para um colega percorrer uma malha no chão.",
+              "integracao_ia": "Comandos de voz para controlar personagens em simulador digital."
+            }
+          ]
+        },
+        {
+          "id": "D2",
+          "habilidade": "Identificar propriedades de polígonos regulares.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Kits/Arduino",
+              "titulo": "O Robô Geômetra",
+              "desafio_robotica": "Programar o robô para desenhar polígonos. Alunos calculam o ângulo externo (360/n).",
+              "integracao_ia": "Visão Computacional: IA identifica a forma desenhada e aponta erro de precisão angular."
+            }
+          ]
+        },
+        {
+          "id": "D3",
+          "habilidade": "Identificar propriedades de triângulos (Soma de ângulos e Pitágoras).",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Engenharia",
+              "titulo": "Triangulação de Carga",
+              "desafio_robotica": "Construir braço robótico com treliças. Cálculo da hipotenusa para reforço estrutural.",
+              "integracao_ia": "Simulador de Stress: IA prevê o ponto de ruptura da estrutura baseado nos ângulos."
+            }
+          ]
+        },
+        {
+          "id": "D4",
+          "habilidade": "Identificar relação entre quadriláteros por meio de suas propriedades.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Mecânica",
+              "titulo": "Chassis Rígido",
+              "desafio_robotica": "Montagem de chassis. Diferenciar paralelogramos de retângulos para alinhamento das rodas.",
+              "integracao_ia": "IA Generativa: Sugestão de design de chassis otimizado para aerodinâmica."
+            }
+          ]
+        },
+        {
+          "id": "D5",
+          "habilidade": "Reconhecer conservação ou modificação de medidas em ampliações/reduções.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Software/Simulação",
+              "titulo": "Avatar 3D em Escala",
+              "desafio_robotica": "Redimensionar um modelo 3D para impressão. Observar que ao dobrar a aresta, a área quadruplica.",
+              "integracao_ia": "Deep Learning: IA sugere o fator de escala ideal para manter a resolução do objeto impresso."
+            }
+          ]
+        },
+        {
+          "id": "D8",
+          "habilidade": "Identificar relações entre ângulos (paralelas cortadas por transversal).",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Óptica/Sensores",
+              "titulo": "Feixe Laser Paralelo",
+              "desafio_robotica": "Alinhamento de dois robôs em trajetórias paralelas. Uso de sensor para detectar transversal.",
+              "integracao_ia": "Simulação Óptica: IA calcula ângulos alternos internos para prever reflexão de luz."
+            }
+          ]
+        },
+        {
+          "id": "D10",
+          "habilidade": "Reconhecer relações métricas no triângulo retângulo.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Navegação",
+              "titulo": "Projeções de Rota",
+              "desafio_robotica": "Calcular a projeção da sombra (h² = m.n). Robô mede sombras para determinar altura.",
+              "integracao_ia": "IA de Reconhecimento: Medição automática de catetos e projeções via câmera."
+            }
+          ]
+        },
+        {
+          "id": "D17",
+          "habilidade": "Identificar a localização de pontos no plano cartesiano.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Navegação Espacial",
+              "titulo": "Mapeamento CNC",
+              "desafio_robotica": "Programar o deslocamento do robô para coordenadas (x, y) específicas.",
+              "integracao_ia": "Visão Computacional: Reconhecimento de pontos e ajuste automático de coordenadas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eixo": "Grandezas e Medidas",
+      "descritores": [
+        {
+          "id": "D11",
+          "habilidade": "Reconhecer círculo/circunferência e seus elementos.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Cinemática",
+              "titulo": "Odômetro de Precisão",
+              "desafio_robotica": "Programar motor para percorrer 1m usando C = 2 * pi * r. Cálculo do diâmetro da roda.",
+              "integracao_ia": "Data Science: IA compara distância teórica vs. real e calibra erro de rodagem."
+            }
+          ]
+        },
+        {
+          "id": "D12",
+          "habilidade": "Resolver problema envolvendo o cálculo de perímetro.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Hardware",
+              "titulo": "Cerca Eletrônica",
+              "desafio_robotica": "O robô percorre canteiro irregular; encoder soma distâncias para definir comprimento do fio.",
+              "integracao_ia": "Algoritmo de Otimização: IA sugere formato de menor perímetro para área fixa."
+            }
+          ]
+        },
+        {
+          "id": "D13_AREA",
+          "habilidade": "Resolver problemas envolvendo cálculo de área.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Visão Computacional",
+              "titulo": "Scanner de Superfície",
+              "desafio_robotica": "Robô deve 'varrer' área retangular. Alunos calculam tempo baseado na área.",
+              "integracao_ia": "IA de Reconhecimento: IA decompõe figura irregular em formas básicas para calcular área total."
+            }
+          ]
+        },
+        {
+          "id": "D14",
+          "habilidade": "Resolver problemas envolvendo noções de volume.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Automação",
+              "titulo": "Cisterna Inteligente",
+              "desafio_robotica": "Sensor ultrassônico mede altura da água para calcular volume (V = Ab * h).",
+              "integracao_ia": "IoT: IA gera alerta de consumo baseado na taxa de variação do volume."
+            }
+          ]
+        },
+        {
+          "id": "D15",
+          "habilidade": "Resolver problemas utilizando relações entre diferentes unidades de medida.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Conversão Digital",
+              "titulo": "Termostato de Precisão",
+              "desafio_robotica": "Sensor de temperatura em Celsius. Programar display para converter em Fahrenheit/Kelvin.",
+              "integracao_ia": "Análise de Séries Temporais: IA prevê o tempo necessário para atingir o ponto de ebulição."
+            }
+          ]
+        },
+        {
+          "id": "D18",
+          "habilidade": "Resolver problema envolvendo a variação de proporcionalidade direta ou inversa entre duas grandezas.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Mecânica e Cinemática",
+              "titulo": "Engrenagens e Velocidade",
+              "desafio_robotica": "Calcular a razão entre o diâmetro das rodas e o tempo de percurso.",
+              "integracao_ia": "Análise Preditiva: Regressão Linear para prever tempo baseado na potência do motor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eixo": "Álgebra e Funções",
+      "descritores": [
+        {
+          "id": "D19",
+          "habilidade": "Resolver problemas com números inteiros (operações).",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Lógica",
+              "titulo": "Robô no Plano Cartesiano",
+              "desafio_robotica": "Robô atinge coordenadas negativas e positivas. Erros de sinal causam colisões virtuais.",
+              "integracao_ia": "Gamificação: IA gera trajetórias que exigem somas/subtrações para atingir alvo."
+            }
+          ]
+        },
+        {
+          "id": "D20",
+          "habilidade": "Resolver variação diretamente proporcional.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Física Aplicada",
+              "titulo": "Velocidade Constante",
+              "desafio_robotica": "Gráfico d = v.t. Aluno altera potência e observa variação linear da distância.",
+              "integracao_ia": "Machine Learning: Modelo identifica coeficiente de proporcionalidade automaticamente."
+            }
+          ]
+        },
+        {
+          "id": "D21",
+          "habilidade": "Identificar expressão algébrica de uma regularidade.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Padrões",
+              "titulo": "Sequência de Passos",
+              "desafio_robotica": "Robô executa passos em progressão. Aluno descobre fórmula para prever o n-ésimo passo.",
+              "integracao_ia": "Pattern Recognition: IA analisa movimentos e gera a função matemática correspondente."
+            }
+          ]
+        },
+        {
+          "id": "D22",
+          "habilidade": "Identificar a localização de números reais na reta numérica.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Cinemática",
+              "titulo": "O Robô Agrimensor",
+              "desafio_robotica": "Programar robô para se deslocar em reta numérica. Aluno usa aproximações de irracionais (√2, π).",
+              "integracao_ia": "Visão Computacional: IA rastreia posição e valida a precisão da parada."
+            }
+          ]
+        },
+        {
+          "id": "D23",
+          "habilidade": "Identificar a expressão algébrica que expressa uma regularidade em sequências.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Lógica",
+              "titulo": "Coreógrafo de LEDs",
+              "desafio_robotica": "Criar sequência de flashes seguindo padrão aritmético. Aluno codifica a lei de formação.",
+              "integracao_ia": "Pattern Recognition: IA analisa o tempo entre disparos e sugere a função matemática."
+            }
+          ]
+        },
+        {
+          "id": "D27",
+          "habilidade": "Efetuar cálculos que envolvam variação proporcional direta ou inversa.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Mecânica",
+              "titulo": "Guindaste de Engrenagens",
+              "desafio_robotica": "Construir sistema de redução. Medir relação entre voltas do motor e torque.",
+              "integracao_ia": "Simulação Física: IA prediz o comportamento mecânico e compara com o real."
+            }
+          ]
+        },
+        {
+          "id": "D28",
+          "habilidade": "Resolver problema que envolva porcentagem.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "IoT",
+              "titulo": "Smart Grid: Modo Eco",
+              "desafio_robotica": "Display mostra consumo. Aluno calcula porcentagem de economia no modo bateria.",
+              "integracao_ia": "Análise Preditiva: IA projeta custo da conta baseado em variações percentuais."
+            }
+          ]
+        },
+        {
+          "id": "D32",
+          "habilidade": "Identificar a expressão algébrica que expressa uma função de 1º grau.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Telemetria",
+              "titulo": "Sensor de Estacionamento",
+              "desafio_robotica": "Mapear distância vs tempo de um objeto. Aluno identifica coeficientes 'a' e 'b'.",
+              "integracao_ia": "Data Science: IA realiza regressão linear e gera a função afim correspondente."
+            }
+          ]
+        },
+        {
+          "id": "D33",
+          "habilidade": "Identificar a expressão algébrica que exprime uma regularidade observada em sequências de números ou figuras (padrões).",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Lógica de Programação",
+              "titulo": "Sequenciador Sensorial",
+              "desafio_robotica": "Criar uma função que define o número de respostas do robô para cada estímulo detectado.",
+              "integracao_ia": "Pattern Recognition: Algoritmo que identifica a lei de formação da sequência automaticamente."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eixo": "Tratamento da Informação",
+      "descritores": [
+        {
+          "id": "D36",
+          "habilidade": "Resolver problemas envolvendo informações em tabelas ou gráficos.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Análise de Dados",
+              "titulo": "Auditores de Energia",
+              "desafio_robotica": "Coletar dados de luminosidade da sala durante o dia. Organizar em tabela de frequências.",
+              "integracao_ia": "Análise Estatística: IA identifica horários de pico e sugere economia automatizada."
+            }
+          ]
+        },
+        {
+          "id": "D37",
+          "habilidade": "Associar informações em listas/tabelas a gráficos.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Data Science",
+              "titulo": "Estação Meteorológica",
+              "desafio_robotica": "Coletar dados de sensores de luz/calor. Tabular e gerar gráficos de linha.",
+              "integracao_ia": "NLP: Chatbot que responde perguntas do aluno analisando tendências dos dados."
+            }
+          ]
+        },
+        {
+          "id": "D38",
+          "habilidade": "Resolver problemas envolvendo noções de probabilidade.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Simulação",
+              "titulo": "Roleta Eletrônica",
+              "desafio_robotica": "Comparar probabilidade teórica vs experimental.",
+              "integracao_ia": "IA Bayesiana: Previsão de resultados em tempo real."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eixo": "Grandezas e Medidas",
+      "descritores": [
+        {
+          "id": "D11",
+          "habilidade": "Reconhecer círculo e circunferência, seus elementos e relações.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Cinemática",
+              "titulo": "Odômetro de Precisão",
+              "desafio_robotica": "Calcular distância via voltas da roda (C = 2πr).",
+              "integracao_ia": "Data Science: IA compara distância teórica vs. real."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Transmissão",
+              "titulo": "Polias Circulares",
+              "desafio_robotica": "Relacionar a circunferência de duas polias com a velocidade (RPM).",
+              "integracao_ia": "IA monitora a eficiência energética da transmissão."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Mecânica Avançada",
+              "titulo": "Diferencial Robótico",
+              "desafio_robotica": "Calcular trajetórias curvas baseadas em raios diferentes nas rodas.",
+              "integracao_ia": "Navegação autônoma por geometria diferencial."
+            }
+          ]
+        },
+        {
+          "id": "D12",
+          "habilidade": "Resolver problema envolvendo o cálculo de perímetro de figuras planas.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Robótica",
+              "titulo": "Cerca Eletrônica",
+              "desafio_robotica": "Robô percorre o contorno de um polígono e soma os lados percorridos.",
+              "integracao_ia": "IA calcula perímetro de fotos enviadas pelo aluno."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Otimização",
+              "titulo": "Perímetro Mínimo",
+              "desafio_robotica": "Achar a forma que gasta menos 'muro' (perímetro) para a mesma área.",
+              "integracao_ia": "Algoritmo de busca por eficiência de materiais."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Cálculo",
+              "titulo": "Perímetros Irregulares",
+              "desafio_robotica": "Medir contornos orgânicos usando encoder de alta precisão.",
+              "integracao_ia": "Integração numérica para estimar curvas complexas."
+            }
+          ]
+        },
+        {
+          "id": "D13",
+          "habilidade": "Resolver problema envolvendo o cálculo de área de figuras planas.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Visão Computacional",
+              "titulo": "Scanner de Área",
+              "desafio_robotica": "Calcular área varrida pelo robô em um retângulo (Base x Altura).",
+              "integracao_ia": "IA decompõe figuras complexas em retângulos."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Engenharia",
+              "titulo": "Pintura Automatizada",
+              "desafio_robotica": "Calcular tempo de spray baseado na área total da superfície.",
+              "integracao_ia": "IA prevê consumo de tinta (volume) em função da área."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Estatística",
+              "titulo": "Método de Monte Carlo",
+              "desafio_robotica": "Estimar área de poças irregulares usando sensores de presença.",
+              "integracao_ia": "IA simula milhares de pontos para cálculo probabilístico de área."
+            }
+          ]
+        },
+        {
+          "id": "D14",
+          "habilidade": "Resolver problema envolvendo noções de volume.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Física Aplicada",
+              "titulo": "Cisternas Digitais",
+              "desafio_robotica": "Calcular volume de um reservatório (Área da Base x h) via sensor ultrassônico.",
+              "integracao_ia": "IA converte volume para litros e tempo de esvaziamento."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Química",
+              "titulo": "Dosagem de Reagentes",
+              "desafio_robotica": "Braço robótico despeja volumes precisos para atingir uma mistura.",
+              "integracao_ia": "IA monitora a massa final vs volume (Densidade)."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Automação",
+              "titulo": "Smart Filling System",
+              "desafio_robotica": "Sistema de enchimento que para automaticamente ao atingir o volume 'V'.",
+              "integracao_ia": "Predição de transbordamento por taxa de fluxo dinâmica."
+            }
+          ]
+        },
+        {
+          "id": "D15",
+          "habilidade": "Resolver problema envolvendo relações entre diferentes unidades de medida.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Termodinâmica",
+              "titulo": "Conversor Térmico",
+              "desafio_robotica": "Sensor lê Celsius e exibe Fahrenheit/Kelvin no LCD.",
+              "integracao_ia": "IA explica a relação física entre as escalas."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Elétrica/Física",
+              "titulo": "Energia e Custo",
+              "desafio_robotica": "Medir consumo em Watts e converter para kWh e valor monetário.",
+              "integracao_ia": "Análise de tendência de consumo mensal."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Química/Massa",
+              "titulo": "Estequiometria Robótica",
+              "desafio_robotica": "Converter Mols em Massa e Volume para reação química controlada.",
+              "integracao_ia": "Cálculo automático de rendimento e pureza."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eixo": "Números e Operações / Álgebra",
+      "descritores": [
+        {
+          "id": "D16",
+          "habilidade": "Identificar a localização de números inteiros na reta numérica.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Robótica",
+              "titulo": "Reta Numérica Humana",
+              "desafio_robotica": "Robô percorre 'passos' positivos e negativos conforme o comando.",
+              "integracao_ia": "IA valida a posição final do robô no eixo X."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Física",
+              "titulo": "Referencial de Movimento",
+              "desafio_robotica": "Definir a origem (0) e medir deslocamentos vetoriais (Diferença de posição).",
+              "integracao_ia": "Cálculo automático de deslocamento escalar vs. vetorial."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Sensores",
+              "titulo": "Localização Absoluta",
+              "desafio_robotica": "Uso de encoder para determinar a posição milimétrica em relação ao zero.",
+              "integracao_ia": "IA de calibração de erro de posição (Offset)."
+            }
+          ]
+        },
+        {
+          "id": "D20",
+          "habilidade": "Resolver problema com grandezas diretamente ou inversamente proporcionais.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Cinemática",
+              "titulo": "Velocidade Constante",
+              "desafio_robotica": "Gráfico d = v.t. Robô anda com potência fixa para testar proporção.",
+              "integracao_ia": "IA gera o gráfico de dispersão dos pontos coletados."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Engrenagens",
+              "titulo": "Inversamente Proporcional",
+              "desafio_robotica": "Relação entre o número de dentes e a velocidade angular (RPM).",
+              "integracao_ia": "Análise de torque constante vs. velocidade variável."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Data Science",
+              "titulo": "Regressão Linear",
+              "desafio_robotica": "Achar a constante de proporcionalidade 'k' através de múltiplos testes.",
+              "integracao_ia": "Machine Learning: O modelo prediz a distância baseada no tempo."
+            }
+          ]
+        },
+        {
+          "id": "D28",
+          "habilidade": "Resolver problema que envolva equação do 1º grau.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Matemática",
+              "titulo": "Balança de Pratos Digital",
+              "desafio_robotica": "Equilibrar o 'peso' (valor de x) usando sensores de força.",
+              "integracao_ia": "IA resolve a equação passo a passo para o aluno."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Programação",
+              "titulo": "O Algoritmo de Resolução",
+              "desafio_robotica": "Criar um script em Python que isole a variável 'x' de uma leitura de sensor.",
+              "integracao_ia": "Interface que aceita equações escritas à mão (OCR)."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Automação",
+              "titulo": "Controle Proporcional",
+              "desafio_robotica": "Manter a velocidade do robô constante mesmo com carga (Equação de ajuste).",
+              "integracao_ia": "IA de controle PID (Proporcional, Integral, Derivativo)."
+            }
+          ]
+        },
+        {
+          "id": "D32",
+          "habilidade": "Identificar a expressão algébrica que expressa uma regularidade.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Lógica",
+              "titulo": "Sequências Robóticas",
+              "desafio_robotica": "Descobrir a lei de formação da sequência de luzes do robô.",
+              "integracao_ia": "IA completa os próximos termos da sequência lógica."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Padrões",
+              "titulo": "Reconhecimento de Funções",
+              "desafio_robotica": "Programar o robô para piscar conforme uma função f(n) = 2n + 1.",
+              "integracao_ia": "IA identifica a função a partir da observação dos flashes."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Séries Numeras",
+              "titulo": "Séries de Fibonacci",
+              "desafio_robotica": "Gerar movimentos baseados na sequência áurea.",
+              "integracao_ia": "IA analisa a estética e eficiência da sequência gerada."
+            }
+          ]
+        },
+        {
+          "id": "D35",
+          "habilidade": "Resolver problemas envolvendo sistemas de equações do 1º grau.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Desafio",
+              "titulo": "Mistura de Reagentes",
+              "desafio_robotica": "Achar as quantidades de dois líquidos (x e y) para um volume final fixo.",
+              "integracao_ia": "Simulador químico de concentrações."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Logística",
+              "titulo": "Otimização de Motores",
+              "desafio_robotica": "Calcular a potência de dois motores para que o robô faça uma curva perfeita.",
+              "integracao_ia": "Resolução matricial do sistema via NumPy (Python)."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Economia/Gestão",
+              "titulo": "Ponto de Equilíbrio",
+              "desafio_robotica": "Achar onde a receita iguala o custo (Sistema C=R).",
+              "integracao_ia": "IA Preditiva de custos operacionais e lucro."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eixo": "Tratamento da Informação",
+      "descritores": [
+        {
+          "id": "D36",
+          "habilidade": "Resolver problema envolvendo informações apresentadas em tabelas e/ou gráficos.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Coleta de Dados",
+              "titulo": "Auditores de Energia",
+              "desafio_robotica": "Coletar dados de luminosidade (LDR) em 5 pontos da sala e organizar em uma tabela manual.",
+              "integracao_ia": "IA calcula a média aritmética simples dos valores coletados."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Data Science",
+              "titulo": "Dashboard Interativo",
+              "desafio_robotica": "Exportar dados do sensor (CSV) e gerar gráficos de barras e setores usando Matplotlib ou Power BI.",
+              "integracao_ia": "Análise de Variância: IA identifica quais pontos da sala têm iluminação fora do padrão."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Predição",
+              "titulo": "Análise de Séries Temporais",
+              "desafio_robotica": "Monitorar o consumo de bateria do robô ao longo de 10 minutos.",
+              "integracao_ia": "Machine Learning: Regressão para prever em quanto tempo a bateria chegará a 0%."
+            }
+          ]
+        },
+        {
+          "id": "D37",
+          "habilidade": "Associar informações apresentadas em listas e/ou tabelas aos gráficos que as representam e vice-versa.",
+          "intervencoes": [
+            {
+              "nivel_id": 1,
+              "tipo": "Probabilidade",
+              "titulo": "Sorteio Eletrônico",
+              "desafio_robotica": "O robô gira e para em uma cor aleatória. Os alunos registram a frequência em uma lista.",
+              "integracao_ia": "IA gera o gráfico de pizza correspondente aos sorteios realizados."
+            },
+            {
+              "nivel_id": 2,
+              "tipo": "Estatística Computacional",
+              "titulo": "Frequência Relativa",
+              "desafio_robotica": "Comparar o gráfico da probabilidade teórica com o gráfico da prática (após 50 sorteios).",
+              "integracao_ia": "Cálculo de Desvio Padrão: IA indica se o 'robô' está viciado ou se os dados são normais."
+            },
+            {
+              "nivel_id": 3,
+              "tipo": "Inteligência Artificial",
+              "titulo": "Reconhecimento de Padrões",
+              "desafio_robotica": "Treinar um modelo simples para classificar se um gráfico representa uma tabela específica.",
+              "integracao_ia": "Rede Neural de Classificação: A IA 'lê' o gráfico e reconstrói a tabela original de dados."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
