@@ -1,6 +1,8 @@
 import json
 from infrastructure.dynamodb_repository import DynamoDBClient
 from services.question_controller import QuestionController
+from services.intervention_controller import InterventionController
+
 
 def route_request(path, method, payload):
     dynamodb_client = DynamoDBClient()
@@ -18,7 +20,8 @@ def route_request(path, method, payload):
         interventions_batch = payload.get('interventions_batch', [])
         if not interventions_batch:
             return 400, {'error': 'interventions_batch is required'}
-        result = "Intervention batch processing not yet implemented"
+        intervention_controller = InterventionController(interventions_batch, dynamodb_client)
+        result = intervention_controller.batch_create()
         return 200, {'success': True, 'message': result}
     
     else:
