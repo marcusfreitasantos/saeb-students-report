@@ -38,5 +38,6 @@ class Descriptor:
 
 @dataclass
 class Intervention:
+    id: str
     category: str
     descriptors: List[Descriptor]

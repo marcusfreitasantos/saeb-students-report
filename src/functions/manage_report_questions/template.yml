@@ -16,8 +16,13 @@ Resources:
           DYNAMO_QUESTIONS_TABLE: saeb_questions
           DYNAMMO_INTERVENTIONS_TABLE: saeb_interventions
       Events:
-        Api:
+        CreateQuestion:
           Type: Api
           Properties:
             Path: /questions/create
+            Method: post
+        CreateIntervention:
+          Type: Api
+          Properties:
+            Path: /interventions/create
             Method: post

@@ -1,0 +1,1267 @@
+{
+  "D1": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "No mapa abaixo, a localização da farmácia é dada pela coordenada (B, 3). [D1_MAPA]\nQual estabelecimento está localizado na coordenada (D, 5)?",
+      "opcoes": [
+        "A) Cinema",
+        "B) Hospital",
+        "C) Escola",
+        "D) Supermercado",
+        "E) Padaria"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Um robô de limpeza percorre uma sala quadrada partindo do canto (1,1). Ele se desloca 4 unidades para a direita e 2 unidades para cima. [D1_ROBO]\nEm quais coordenadas o robô parou?",
+      "opcoes": [
+        "A) (5, 3)",
+        "B) (4, 2)",
+        "C) (1, 4)",
+        "D) (5, 2)",
+        "E) (3, 5)"
+      ],
+      "resp": "A"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "No esquema de um cinema, as poltronas são identificadas por uma letra (fila) e um número (coluna). [D1_CINEMA]\nA poltrona de Pedro está na fila E, posição 4. Qual o código da sua poltrona?",
+      "opcoes": ["A) 4E", "B) E4", "C) 5D", "D) D5"],
+      "resp": "B"
+    }
+  ],
+  "D2": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Observe a planificação abaixo. [D2_PLANIFICA]\nEssa planificação corresponde a qual sólido geométrico?",
+      "opcoes": [
+        "A) Cubo",
+        "B) Pirâmide de base quadrada",
+        "C) Cilindro",
+        "D) Prisma triangular",
+        "E) Cone"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Ao abrir uma caixa de sapatos, percebemos que ela é formada por 6 faces retangulares. [D2_CAIXA]\nQual é o nome desse sólido geométrico?",
+      "opcoes": [
+        "A) Cubo",
+        "B) Pirâmide",
+        "C) Paralelepípedo",
+        "D) Cilindro",
+        "E) Esfera"
+      ],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um poliedro possui 6 faces e 8 vértices. [D2_POLIEDRO]\nDe acordo com a Relação de Euler (V - A + F = 2), quantas arestas possui esse poliedro?",
+      "opcoes": ["A) 10", "B) 12", "C) 14", "D) 16"],
+      "resp": "B"
+    }
+  ],
+  "D3": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "Um triângulo que possui todos os três lados com medidas iguais é classificado como:",
+      "opcoes": [
+        "A) Isósceles",
+        "B) Escaleno",
+        "C) Equilátero",
+        "D) Retângulo",
+        "E) Obtusângulo"
+      ],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Um triângulo possui um ângulo interno medindo 90°. Os outros dois ângulos medem 45° cada. [D3_TRIANGULO_RET]\nQuanto à sua classificação por ângulos e lados, ele é:",
+      "opcoes": [
+        "A) Equilátero e Acutângulo",
+        "B) Isósceles e Retângulo",
+        "C) Escaleno e Obtusângulo",
+        "D) Isósceles e Acutângulo",
+        "E) Escaleno e Retângulo"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Três retas paralelas são cortadas por duas transversais (Teorema de Tales). Os segmentos na primeira transversal medem 4cm e 6cm. Se o segmento correspondente ao de 4cm na segunda transversal mede 10cm, quanto mede o outro segmento? [D3_TALES]",
+      "opcoes": ["A) 12cm", "B) 15cm", "C) 18cm", "D) 20cm"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Um triângulo que possui um ângulo maior que 90° é chamado de:",
+      "opcoes": [
+        "A) Acutângulo",
+        "B) Retângulo",
+        "C) Obtusângulo",
+        "D) Equilátero"
+      ],
+      "resp": "C"
+    }
+  ],
+  "D4": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "A figura abaixo mostra a localização de alguns objetos numa malha quadriculada. [D1_MALHA]\nPartindo da origem (0,0), para chegar ao objeto 'Bola', deve-se caminhar:",
+      "opcoes": [
+        "A) 2 para a direita e 3 para cima",
+        "B) 3 para a direita e 2 para cima",
+        "C) 2 para a esquerda e 3 para baixo",
+        "D) 3 para cima e 3 para a direita",
+        "E) 1 para a direita e 1 para cima"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Observe o quadrilátero abaixo. Ele possui dois pares de lados paralelos, mas seus ângulos não são de 90°. [D4_QUADRILATERO]\nEste polígono é um:",
+      "opcoes": [
+        "A) Retângulo",
+        "B) Trapézio",
+        "C) Losango",
+        "D) Quadrado",
+        "E) Pentágono"
+      ],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Um quadrilátero possui apenas um par de lados paralelos. [D4_TRAPEZIO]\nEste polígono é classificado como:",
+      "opcoes": [
+        "A) Paralelogramo",
+        "B) Losango",
+        "C) Trapézio",
+        "D) Retângulo"
+      ],
+      "resp": "C"
+    }
+  ],
+  "D5": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Observe o triângulo retângulo abaixo. [D5_TRIANGULO]\nQual é o valor do ângulo interno assinalado com a letra 'alpha'?",
+      "opcoes": ["A) 30°", "B) 45°", "C) 60°", "D) 90°", "E) 180°"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Em um triângulo, as medidas dos ângulos internos são x, 2x e 3x. [D5_ANGULOS]\nQual é o valor do maior ângulo deste triângulo?",
+      "opcoes": ["A) 30°", "B) 60°", "C) 90°", "D) 120°"],
+      "resp": "C"
+    }
+  ],
+  "D6": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Observe os quadriláteros na malha quadriculada abaixo. [D6_SEMELHANCA]\nQual desses quadriláteros é uma ampliação do quadrilátero I?",
+      "opcoes": ["A) II", "B) III", "C) IV", "D) V", "E) VI"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um triângulo possui área de 10cm². Se dobrarmos todas as suas dimensões (base e altura), qual será a nova área desse triângulo? [D6_AREA_AMPLIA]",
+      "opcoes": ["A) 20cm²", "B) 30cm²", "C) 40cm²", "D) 50cm²"],
+      "resp": "C"
+    }
+  ],
+  "D7": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um triângulo ABC foi ampliado para um triângulo A'B'C'. Se a base do triângulo original mede 5cm e a base do triângulo ampliado mede 15cm, qual foi a constante de proporcionalidade (razão de semelhança)?",
+      "opcoes": ["A) 2", "B) 3", "C) 5", "D) 10", "E) 15"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Um retângulo de lados 4cm e 6cm foi reduzido pela metade. [D7_REDUCAO]\nQuais as novas medidas dos lados do retângulo?",
+      "opcoes": [
+        "A) 2cm e 3cm",
+        "B) 1cm e 1,5cm",
+        "C) 8cm e 12cm",
+        "D) 4cm e 3cm"
+      ],
+      "resp": "A"
+    }
+  ],
+  "D8": [
+    {
+      "nivel": "Médio",
+      "enunciado": "A soma dos ângulos internos de um hexágono regular é:",
+      "opcoes": ["A) 180°", "B) 360°", "C) 540°", "D) 720°", "E) 900°"],
+      "resp": "D"
+    }
+  ],
+  "D9": [
+    {
+      "nivel": "Médio",
+      "enunciado": "No triângulo isósceles abaixo, o ângulo do vértice mede 40°. [D9_TRIANGULO]\nQuanto medem cada um dos ângulos da base?",
+      "opcoes": ["A) 40°", "B) 90°", "C) 70°", "D) 140°", "E) 60°"],
+      "resp": "C"
+    }
+  ],
+  "D10": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "Uma escada de 10 metros está encostada em um muro. A base da escada está a 6 metros de distância do muro. [D10_ESCADA]\nA que altura o topo da escada toca o muro?",
+      "opcoes": [
+        "A) 4 metros",
+        "B) 8 metros",
+        "C) 16 metros",
+        "D) 2 metros",
+        "E) 64 metros"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Os catetos de um triângulo retângulo medem 9cm e 12cm. Qual é a medida da hipotenusa? [D10_PITAGORAS]",
+      "opcoes": ["A) 15cm", "B) 18cm", "C) 20cm", "D) 21cm"],
+      "resp": "A"
+    }
+  ],
+  "D11": [
+    {
+      "nivel": "Médio",
+      "enunciado": "No polígono abaixo, quais são as coordenadas dos vértices A, B e C? [D11_COORD]\nObserve atentamente o plano cartesiano.",
+      "opcoes": [
+        "A) A(1,2), B(3,4), C(5,1)",
+        "B) A(2,1), B(4,3), C(1,5)",
+        "C) A(0,0), B(1,1), C(2,2)",
+        "D) A(-1,2), B(2,3), C(4,0)",
+        "E) A(1,1), B(2,2), C(3,3)"
+      ],
+      "resp": "A"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "No plano cartesiano, um ponto está localizado 3 unidades à esquerda da origem e 4 unidades para baixo. [D11_PLANO]\nSuas coordenadas são:",
+      "opcoes": ["A) (3, 4)", "B) (-3, 4)", "C) (3, -4)", "D) (-3, -4)"],
+      "resp": "D"
+    }
+  ],
+  "D12": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma partida de futebol começou às 16h 15min e terminou às 18h 05min. Qual foi a duração total dessa partida?",
+      "opcoes": [
+        "A) 1h 10min",
+        "B) 1h 50min",
+        "C) 2h 10min",
+        "D) 2h 50min",
+        "E) 1h 45min"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Um atleta correu uma maratona de 42,195 quilômetros. [D12_KM]\nQuantos metros ele percorreu no total?",
+      "opcoes": ["A) 4.219,5 m", "B) 421.950 m", "C) 42.195 m", "D) 421,95 m"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Um reservatório contém 5m³ de água. Sabendo que 1m³ equivale a 1.000 litros, quantos litros de água há no reservatório?",
+      "opcoes": [
+        "A) 500 litros",
+        "B) 5.000 litros",
+        "C) 50 litros",
+        "D) 50.000 litros"
+      ],
+      "resp": "B"
+    }
+  ],
+  "D13": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um salão retangular tem 6 metros de largura e 8 metros de comprimento. Deseja-se cobrir o piso com cerâmicas quadradas de 0,5m de lado. Quantas cerâmicas serão necessárias?",
+      "opcoes": ["A) 48", "B) 96", "C) 192", "D) 24", "E) 100"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Uma quadra de vôlei possui 18 metros de comprimento e 9 metros de largura. [D13_QUADRA]\nQual é o perímetro (contorno) dessa quadra?",
+      "opcoes": [
+        "A) 27 metros",
+        "B) 54 metros",
+        "C) 162 metros",
+        "D) 45 metros",
+        "E) 81 metros"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "A área de um quadrado é de 64 cm². [D13_QUADRADO]\nQual é a medida do lado desse quadrado?",
+      "opcoes": ["A) 4 cm", "B) 8 cm", "C) 16 cm", "D) 32 cm"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "A base de um triângulo mede 12cm e sua altura mede 8cm. Qual é a área deste triângulo?",
+      "opcoes": ["A) 96cm²", "B) 48cm²", "C) 20cm²", "D) 40cm²"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Deseja-se pintar uma parede de 3m de altura por 5m de comprimento. [D13_PAREDE]\nSabendo que uma lata de tinta pinta 5m², quantas latas serão necessárias?",
+      "opcoes": ["A) 2 latas", "B) 3 latas", "C) 4 latas", "D) 5 latas"],
+      "resp": "B"
+    }
+  ],
+  "D14": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um aquário tem o formato de um paralelepípedo resto retângulo com 50cm de comprimento, 30cm de largura e 40cm de altura. Qual é a capacidade total deste aquário em litros? (Lembre-se: 1000cm³ = 1 litro)",
+      "opcoes": [
+        "A) 60 litros",
+        "B) 12 litros",
+        "C) 120 litros",
+        "D) 6 litros",
+        "E) 600 litros"
+      ],
+      "resp": "A"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma caixa cúbica possui aresta de 2 metros. [D14_CUBO]\nQual é o volume total desta caixa em metros cúbicos?",
+      "opcoes": ["A) 4 m³", "B) 6 m³", "C) 8 m³", "D) 12 m³"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um cilindro possui raio da base igual a 3cm e altura de 10cm. Considerando Pi = 3, qual o volume aproximado desse cilindro?",
+      "opcoes": ["A) 90cm³", "B) 180cm³", "C) 270cm³", "D) 300cm³"],
+      "resp": "C"
+    }
+  ],
+  "D15": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma caixa d'água de 1000 litros está com apenas 25% da sua capacidade. Quantos litros faltam para encher a caixa?",
+      "opcoes": [
+        "A) 250 litros",
+        "B) 500 litros",
+        "C) 750 litros",
+        "D) 800 litros",
+        "E) 100 litros"
+      ],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma jarra de 2 litros está cheia de suco. Quantos copos de 250ml podem ser servidos com essa quantidade?",
+      "opcoes": ["A) 4 copos", "B) 6 copos", "C) 8 copos", "D) 10 copos"],
+      "resp": "C"
+    }
+  ],
+  "D16": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "Na reta numérica abaixo, o ponto P representa qual número racional? [FIG_D16_RETA]\n(Considere que a reta está dividida em partes iguais entre 0 e 1).",
+      "opcoes": ["A) 0,2", "B) 0,5", "C) 0,75", "D) 1,2", "E) 1,5"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Qual é a alternativa que apresenta o número decimal correspondente à fração 1/8?",
+      "opcoes": ["A) 0,125", "B) 0,8", "C) 0,18", "D) 1,25"],
+      "resp": "A"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual é a representação fracionária do número decimal 0,4?",
+      "opcoes": ["A) 1/4", "B) 4/10", "C) 4/100", "D) 2/10"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O número 1,5 na forma de porcentagem é:",
+      "opcoes": ["A) 15%", "B) 1,5%", "C) 150%", "D) 0,15%"],
+      "resp": "C"
+    }
+  ],
+  "D17": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Em uma cidade, a temperatura às 6h da manhã era de -3°C. Ao meio-dia, a temperatura havia subido 8°C. Qual era a temperatura ao meio-dia?",
+      "opcoes": ["A) -11°C", "B) 5°C", "C) 11°C", "D) -5°C", "E) 8°C"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Deseja-se colocar 120 litros de suco em garrafas de 1,5 litro cada. [D17_GARRAFA]\nQuantas garrafas serão preenchidas?",
+      "opcoes": ["A) 60", "B) 80", "C) 100", "D) 120"],
+      "resp": "B"
+    }
+  ],
+  "D18": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "O resultado da operação 1.250 + 3.450 - 1.100 é:",
+      "opcoes": ["A) 3.500", "B) 4.700", "C) 3.600", "D) 4.600", "E) 5.800"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O quociente da divisão de 1.440 por 12 é:",
+      "opcoes": ["A) 100", "B) 110", "C) 120", "D) 130"],
+      "resp": "C"
+    }
+  ],
+  "D19": [
+    {
+      "nivel": "Médio",
+      "enunciado": "O número irracional √7 está localizado na reta numérica entre quais números inteiros?",
+      "opcoes": ["A) 1 e 2", "B) 2 e 3", "C) 3 e 4", "D) 4 e 5", "E) 7 e 8"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual dos números abaixo é um número irracional?",
+      "opcoes": ["A) 0,5", "B) √9", "C) √2", "D) 3/4"],
+      "resp": "C"
+    }
+  ],
+  "D20": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual é o valor da expressão numérica (2/5) + (1/2)?",
+      "opcoes": ["A) 3/7", "B) 3/10", "C) 9/10", "D) 2/10", "E) 1/10"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O valor da expressão (1/2) x (3/4) + (1/8) é:",
+      "opcoes": ["A) 1/2", "B) 4/8", "C) 1", "D) 5/8"],
+      "resp": "A"
+    }
+  ],
+  "D21": [
+    {
+      "nivel": "Médio",
+      "enunciado": "A fração 3/4 pode ser representada pelo seguinte número decimal:",
+      "opcoes": ["A) 0,34", "B) 3,4", "C) 0,75", "D) 0,3", "E) 7,5"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Se 3/5 de um número é igual a 60, qual é esse número?",
+      "opcoes": ["A) 36", "B) 100", "C) 120", "D) 150"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Se uma pizza foi dividida em 8 pedaços iguais e você comeu 3, qual fração da pizza ainda resta?",
+      "opcoes": ["A) 3/8", "B) 5/8", "C) 8/3", "D) 1/2"],
+      "resp": "B"
+    }
+  ],
+  "D22": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Um pacote de arroz de 5kg custa R$ 22,50. Qual é o preço de 1kg desse arroz?",
+      "opcoes": [
+        "A) R$ 4,00",
+        "B) R$ 4,50",
+        "C) R$ 5,00",
+        "D) R$ 5,50",
+        "E) R$ 2,50"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Uma receita de bolo utiliza 250g de farinha. Para fazer 4 receitas iguais, quantos quilogramas de farinha serão necessários?",
+      "opcoes": ["A) 0,5 kg", "B) 1,0 kg", "C) 1,5 kg", "D) 2,0 kg"],
+      "resp": "B"
+    }
+  ],
+  "D23": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "O valor da potência ( -3 )² é:",
+      "opcoes": ["A) -6", "B) 6", "C) -9", "D) 9", "E) 0"],
+      "resp": "D"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual é o valor de 5 elevado a zero (5⁰)?",
+      "opcoes": ["A) 0", "B) 5", "C) 1", "D) 50"],
+      "resp": "C"
+    }
+  ],
+  "D24": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "A fatoração do número 36 em números primos é:",
+      "opcoes": [
+        "A) 2 x 3 x 6",
+        "B) 2² x 3²",
+        "C) 4 x 9",
+        "D) 2³ x 3",
+        "E) 6²"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O Mínimo Múltiplo Comum (MMC) entre os números 12 e 15 é:",
+      "opcoes": ["A) 3", "B) 30", "C) 60", "D) 180"],
+      "resp": "C"
+    }
+  ],
+  "D25": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Qual é o valor aproximado de √50?",
+      "opcoes": ["A) 5,7", "B) 7,07", "C) 25", "D) 10", "E) 6,5"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "O valor exato da raiz quadrada de 144 é:",
+      "opcoes": ["A) 10", "B) 11", "C) 12", "D) 14"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O valor da expressão √16 + √9 é:",
+      "opcoes": ["A) √25", "B) 5", "C) 7", "D) 12"],
+      "resp": "C"
+    }
+  ],
+  "D26": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "Três torneiras idênticas enchem um tanque em 6 horas. Se utilizarmos 9 torneiras iguais a essas, em quanto tempo o tanque ficará cheio?",
+      "opcoes": [
+        "A) 18 horas",
+        "B) 2 horas",
+        "C) 3 horas",
+        "D) 12 horas",
+        "E) 4 horas"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Um carro consome 12 litros de combustível para percorrer 150 km. [D26_CARRO]\nQuantos litros ele consumirá para percorrer 450 km mantendo o mesmo desempenho?",
+      "opcoes": [
+        "A) 24 litros",
+        "B) 30 litros",
+        "C) 36 litros",
+        "D) 40 litros"
+      ],
+      "resp": "C"
+    }
+  ],
+  "D27": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Em uma loja, um celular custa R$ 1.200,00. Se for comprado à vista, há um desconto de 15%. Qual o valor do desconto em reais?",
+      "opcoes": [
+        "A) R$ 120,00",
+        "B) R$ 150,00",
+        "C) R$ 180,00",
+        "D) R$ 200,00",
+        "E) R$ 100,00"
+      ],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um produto custava R$ 200,00 e passou a custar R$ 250,00. Qual foi a porcentagem de aumento?",
+      "opcoes": ["A) 20%", "B) 25%", "C) 50%", "D) 10%"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Vinte e cinco por cento (25%) de 200 é igual a:",
+      "opcoes": ["A) 25", "B) 50", "C) 75", "D) 100"],
+      "resp": "B"
+    }
+  ],
+  "D28": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma televisão de R$ 900,00 sofreu um aumento de 10%. Qual passou a ser o novo preço da televisão?",
+      "opcoes": [
+        "A) R$ 910,00",
+        "B) R$ 990,00",
+        "C) R$ 1.000,00",
+        "D) R$ 810,00",
+        "E) R$ 909,00"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Uma calça que custava R$ 80,00 teve um desconto de 20%. [D28_CALCA]\nQual o valor da calça após o desconto?",
+      "opcoes": ["A) R$ 16,00", "B) R$ 60,00", "C) R$ 64,00", "D) R$ 72,00"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um produto que custava R$ 500,00 sofreu um desconto de 10% e, no mês seguinte, um novo desconto de 10% sobre o valor já reduzido. Qual o preço final?",
+      "opcoes": [
+        "A) R$ 400,00",
+        "B) R$ 405,00",
+        "C) R$ 410,00",
+        "D) R$ 450,00"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Um investidor aplicou R$ 1.000,00 em juros simples a uma taxa de 2% ao mês. Após 5 meses, qual será o montante total (capital + juros)?",
+      "opcoes": [
+        "A) R$ 1.100,00",
+        "B) R$ 1.050,00",
+        "C) R$ 1.200,00",
+        "D) R$ 1.010,00"
+      ],
+      "resp": "A"
+    }
+  ],
+  "D29": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "A expressão algébrica que representa 'o dobro de um número x somado com 5' é:",
+      "opcoes": [
+        "A) x² + 5",
+        "B) 2x + 5",
+        "C) 2(x + 5)",
+        "D) x/2 + 5",
+        "E) 5x + 2"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "A frase 'o triplo de um número subtraído de 10' traduz-se para a linguagem algébrica como:",
+      "opcoes": ["A) 3x - 10", "B) 10 - 3x", "C) 3(x - 10)", "D) x/3 - 10"],
+      "resp": "A"
+    }
+  ],
+  "D30": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Sendo x = 3 e y = -2, qual o valor numérico da expressão 2x - 3y?",
+      "opcoes": ["A) 0", "B) 12", "C) 6", "D) -6", "E) 1"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual o valor numérico da expressão x² + 2x for x = 4?",
+      "opcoes": ["A) 12", "B) 16", "C) 20", "D) 24"],
+      "resp": "D"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Simplificando a expressão 3x + 5y - x + 2y, obtemos:",
+      "opcoes": ["A) 4x + 7y", "B) 2x + 7y", "C) 2x + 3y", "D) 3x + 3y"],
+      "resp": "B"
+    }
+  ],
+  "D31": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "A solução da equação de 1º grau 3x + 4 = 19 é:",
+      "opcoes": ["A) x = 5", "B) x = 7", "C) x = 15", "D) x = 4", "E) x = 3"],
+      "resp": "A"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual o valor de x na equação 2x - 8 = 0?",
+      "opcoes": ["A) 2", "B) 4", "C) 8", "D) -4"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Se 5x - 10 = 2x + 8, qual o valor de x?",
+      "opcoes": ["A) 3", "B) 6", "C) 9", "D) 12"],
+      "resp": "B"
+    }
+  ],
+  "D32": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Qual é a raiz da equação x² - 5x + 6 = 0?",
+      "opcoes": ["A) 1 e 6", "B) 2 e 3", "C) -2 e -3", "D) 0 e 5", "E) 5 e 6"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Quais são as raízes da equação x² - 7x + 10 = 0?",
+      "opcoes": ["A) 2 e 5", "B) -2 e -5", "C) 3 e 4", "D) 1 e 10"],
+      "resp": "A"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Uma equação do 2º grau do tipo ax² + c = 0, onde b=0, é chamada de:",
+      "opcoes": ["A) Completa", "B) Incompleta", "C) Linear", "D) Identidade"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O valor do discriminante (Delta) da equação x² - 4x + 4 = 0 é:",
+      "opcoes": ["A) 0", "B) 4", "C) 8", "D) 16"],
+      "resp": "A"
+    }
+  ],
+  "D33": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Um sistema de equações é dado por: x + y = 10 e x - y = 2. Quais os valores de x e y?",
+      "opcoes": [
+        "A) x=5, y=5",
+        "B) x=6, y=4",
+        "C) x=7, y=3",
+        "D) x=8, y=2",
+        "E) x=4, y=6"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "No sistema x + y = 5 e x - y = 1, o valor de x é:",
+      "opcoes": ["A) 2", "B) 3", "C) 4", "D) 5"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Em um estacionamento há carros (4 rodas) e motos (2 rodas). Ao todo são 10 veículos e 32 rodas. Quantos carros há no local?",
+      "opcoes": ["A) 4", "B) 6", "C) 5", "D) 8"],
+      "resp": "B"
+    }
+  ],
+  "D34": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "A função que representa o custo total (C) de produção de 'n' camisetas, sabendo que há um custo fixo de R$ 50,00 mais R$ 10,00 por unidade, é:",
+      "opcoes": [
+        "A) C = 50n + 10",
+        "B) C = 10n + 50",
+        "C) C = 60n",
+        "D) C = 50 / 10n",
+        "E) C = 10n - 50"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Dada a função f(x) = 2x + 3, qual é o valor de f(5)?",
+      "opcoes": ["A) 10", "B) 13", "C) 8", "D) 15"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma função é dada por y = x². Se x = -4, qual o valor de y?",
+      "opcoes": ["A) -16", "B) 16", "C) -8", "D) 8"],
+      "resp": "B"
+    }
+  ],
+  "D35": [
+    {
+      "nivel": "Médio",
+      "enunciado": "O gráfico de uma função do 1º grau (y = ax + b) é sempre representado por uma:",
+      "opcoes": [
+        "A) Parábola",
+        "B) Reta",
+        "C) Circunferência",
+        "D) Curva",
+        "E) Elipse"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Na função y = -3x + 2, o coeficiente angular é:",
+      "opcoes": ["A) 2", "B) 3", "C) -3", "D) -2"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "O ponto onde a reta y = 2x - 6 corta o eixo y é:",
+      "opcoes": ["A) (0, 6)", "B) (6, 0)", "C) (0, -6)", "D) (3, 0)"],
+      "resp": "C"
+    }
+  ],
+  "D36": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "A tabela abaixo mostra a quantidade de alunos matriculados em uma escola de idiomas por faixa etária. [FIG_D36_TABELA]\nEm qual faixa etária houve o maior número de matrículas?",
+      "opcoes": [
+        "A) 10 a 12 anos",
+        "B) 13 a 15 anos",
+        "C) 16 a 18 anos",
+        "D) 19 a 21 anos",
+        "E) Acima de 21 anos"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "A tabela abaixo mostra o consumo de energia de uma residência nos últimos 3 meses. [D36_CONSUMO]\nQual foi a média mensal de consumo nesse período (em kWh)?",
+      "opcoes": ["A) 150 kWh", "B) 180 kWh", "C) 200 kWh", "D) 210 kWh"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Em uma pesquisa de opinião, 20 pessoas responderam 'Sim', 30 'Não' e 10 'Não sabem'. [D36_PIZZA]\nQual a porcentagem de pessoas que responderam 'Não'?",
+      "opcoes": ["A) 30%", "B) 50%", "C) 60%", "D) 20%"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Em uma lista de compras: Arroz R$ 20, Feijão R$ 8, Óleo R$ 6. [D36_LISTA]\nQual o valor total da compra?",
+      "opcoes": ["A) R$ 32,00", "B) R$ 34,00", "C) R$ 30,00", "D) R$ 28,00"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "A média aritmética das notas de um aluno em 4 bimestres foi 7,0. Se as três primeiras notas foram 6,0; 7,0 e 8,0, qual foi a quarta nota?",
+      "opcoes": ["A) 6,0", "B) 7,0", "C) 8,0", "D) 9,0"],
+      "resp": "B"
+    }
+  ],
+  "D37": [
+    {
+      "nivel": "Médio",
+      "enunciado": "O gráfico de colunas apresenta o desempenho de uma turma de 9º ano em um simulado de Matemática. [FIG_D37_GRAFICO]\nQuantos alunos obtiveram nota superior a 7,0?",
+      "opcoes": [
+        "A) 5 alunos",
+        "B) 8 alunos",
+        "C) 12 alunos",
+        "D) 15 alunos",
+        "E) 20 alunos"
+      ],
+      "resp": "C"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "O gráfico de setores representa a preferência por esportes em uma escola. [D37_ESPORTES]\nSe 40% preferem futebol e a escola tem 500 alunos, quantos alunos preferem futebol?",
+      "opcoes": ["A) 150", "B) 200", "C) 250", "D) 300"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Observando um gráfico de linhas que mostra as vendas de uma loja por mês, notamos que em Janeiro foram vendidos 100 itens e em Fevereiro 150. [D37_LINHAS]\nQual foi o aumento nas vendas de um mês para o outro?",
+      "opcoes": [
+        "A) 50 unidades",
+        "B) 100 unidades",
+        "C) 250 unidades",
+        "D) 150 unidades"
+      ],
+      "resp": "A"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um gráfico de barras mostra a produção de duas fábricas (A e B) durante 4 meses. [D37_COMPARA]\nEm qual mês a diferença de produção entre elas foi maior?",
+      "opcoes": ["A) Mês 1", "B) Mês 2", "C) Mês 3", "D) Mês 4"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Em um lançamento de um dado comum de 6 faces, qual é a probabilidade de sair um número par?",
+      "opcoes": ["A) 1/6", "B) 1/3", "C) 1/2", "D) 2/3"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma urna contém 5 bolas brancas e 15 bolas pretas. [D37_URNA]\nRetirando-se uma bola ao acaso, qual a probabilidade dela ser branca?",
+      "opcoes": ["A) 25%", "B) 50%", "C) 75%", "D) 20%"],
+      "resp": "A"
+    }
+  ],
+  "D17": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Em uma cidade, a temperatura às 6h da manhã era de -3°C. Ao meio-dia, a temperatura havia subido 8°C. Qual era a temperatura ao meio-dia?",
+      "opcoes": ["A) -11°C", "B) 5°C", "C) 11°C", "D) -5°C"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Deseja-se colocar 120 litros de suco em garrafas de 1,5 litro cada. [D17_GARRAFA]\nQuantas garrafas serão preenchidas?",
+      "opcoes": ["A) 60", "B) 80", "C) 100", "D) 120"],
+      "resp": "B"
+    }
+  ],
+  "D19": [
+    {
+      "nivel": "Médio",
+      "enunciado": "O número irracional √7 está localizado na reta numérica entre quais números inteiros?",
+      "opcoes": ["A) 1 e 2", "B) 2 e 3", "C) 3 e 4", "D) 7 e 8"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual dos números abaixo é um número irracional?",
+      "opcoes": ["A) 0,5", "B) √9", "C) √2", "D) 3/4"],
+      "resp": "C"
+    }
+  ],
+  "D20": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual é o valor da expressão numérica (2/5) + (1/2)?",
+      "opcoes": ["A) 3/7", "B) 3/10", "C) 9/10", "D) 7/10"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O valor da expressão (1/2) x (3/4) + (1/8) é:",
+      "opcoes": ["A) 1/2", "B) 4/8", "C) 1", "D) 5/8"],
+      "resp": "A"
+    }
+  ],
+  "D21": [
+    {
+      "nivel": "Médio",
+      "enunciado": "A fração 3/4 pode ser representada pelo seguinte número decimal:",
+      "opcoes": ["A) 0,34", "B) 3,4", "C) 0,75", "D) 0,3"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Se 3/5 de um número é igual a 60, qual é esse número?",
+      "opcoes": ["A) 36", "B) 100", "C) 120", "D) 150"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Se uma pizza foi dividida em 8 pedaços iguais e você comeu 3, qual fração da pizza ainda resta?",
+      "opcoes": ["A) 3/8", "B) 5/8", "C) 8/3", "D) 1/2"],
+      "resp": "B"
+    }
+  ],
+  "D22": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Um pacote de arroz de 5kg custa R$ 22,50. Qual é o preço de 1kg desse arroz?",
+      "opcoes": ["A) R$ 4,00", "B) R$ 4,50", "C) R$ 5,00", "D) R$ 2,50"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Uma receita de bolo utiliza 250g de farinha. Para fazer 4 receitas iguais, quantos quilogramas de farinha serão necessários?",
+      "opcoes": ["A) 0,5 kg", "B) 1,0 kg", "C) 1,5 kg", "D) 2,0 kg"],
+      "resp": "B"
+    }
+  ],
+  "D23": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "O valor da potência ( -3 )² é:",
+      "opcoes": ["A) -6", "B) 6", "C) -9", "D) 9"],
+      "resp": "D"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual é o valor de 5 elevado a zero (5⁰)?",
+      "opcoes": ["A) 0", "B) 5", "C) 1", "D) 50"],
+      "resp": "C"
+    }
+  ],
+  "D24": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "A fatoração do número 36 em números primos é:",
+      "opcoes": ["A) 2 x 3 x 6", "B) 2² x 3²", "C) 4 x 9", "D) 6²"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O Mínimo Múltiplo Comum (MMC) entre os números 12 e 15 é:",
+      "opcoes": ["A) 3", "B) 30", "C) 60", "D) 180"],
+      "resp": "C"
+    }
+  ],
+  "D25": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Qual é o valor aproximado de √50?",
+      "opcoes": ["A) 5,7", "B) 7,07", "C) 25", "D) 10"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "O valor exato da raiz quadrada de 144 é:",
+      "opcoes": ["A) 10", "B) 11", "C) 12", "D) 14"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O valor da expressão √16 + √9 é:",
+      "opcoes": ["A) √25", "B) 5", "C) 7", "D) 12"],
+      "resp": "C"
+    }
+  ],
+  "D26": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "Três torneiras idênticas enchem um tanque em 6 horas. Se utilizarmos 9 torneiras iguais a essas, em quanto tempo o tanque ficará cheio?",
+      "opcoes": ["A) 18 horas", "B) 2 horas", "C) 3 horas", "D) 12 horas"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Um carro consome 12 litros de combustível para percorrer 150 km. [D26_CARRO]\nQuantos litros ele consumirá para percorrer 450 km?",
+      "opcoes": [
+        "A) 24 litros",
+        "B) 30 litros",
+        "C) 36 litros",
+        "D) 40 litros"
+      ],
+      "resp": "C"
+    }
+  ],
+  "D27": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Em uma loja, um celular custa R$ 1.200,00. Se for comprado à vista, há um desconto de 15%. Qual o valor do desconto em reais?",
+      "opcoes": [
+        "A) R$ 120,00",
+        "B) R$ 150,00",
+        "C) R$ 180,00",
+        "D) R$ 200,00"
+      ],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um produto custava R$ 200,00 e passou a custar R$ 250,00. Qual foi a porcentagem de aumento?",
+      "opcoes": ["A) 20%", "B) 25%", "C) 50%", "D) 10%"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Vinte e cinco por cento (25%) de 200 é igual a:",
+      "opcoes": ["A) 25", "B) 50", "C) 75", "D) 100"],
+      "resp": "B"
+    }
+  ],
+  "D28": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "Uma calça que custava R$ 80,00 teve um desconto de 20%. [D28_CALCA]\nQual o valor da calça após o desconto?",
+      "opcoes": ["A) R$ 16,00", "B) R$ 60,00", "C) R$ 64,00", "D) R$ 72,00"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um produto que custava R$ 500,00 sofreu um desconto de 10% e, no mês seguinte, um novo desconto de 10% sobre o valor já reduzido. Qual o preço final?",
+      "opcoes": [
+        "A) R$ 400,00",
+        "B) R$ 405,00",
+        "C) R$ 410,00",
+        "D) R$ 450,00"
+      ],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Um investidor aplicou R$ 1.000,00 em juros simples a uma taxa de 2% ao mês. Após 5 meses, qual será o montante total?",
+      "opcoes": [
+        "A) R$ 1.100,00",
+        "B) R$ 1.050,00",
+        "C) R$ 1.200,00",
+        "D) R$ 1.010,00"
+      ],
+      "resp": "A"
+    }
+  ],
+  "D29": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "A expressão algébrica que representa 'o dobro de um número x somado com 5' é:",
+      "opcoes": ["A) x² + 5", "B) 2x + 5", "C) 2(x + 5)", "D) 5x + 2"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "A frase 'o triplo de um número subtraído de 10' traduz-se para a linguagem algébrica como:",
+      "opcoes": ["A) 3x - 10", "B) 10 - 3x", "C) 3(x - 10)", "D) x/3 - 10"],
+      "resp": "A"
+    }
+  ],
+  "D30": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Sendo x = 3 e y = -2, qual o valor numérico da expressão 2x - 3y?",
+      "opcoes": ["A) 0", "B) 12", "C) 6", "D) -6"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual o valor numérico da expressão x² + 2x para x = 4?",
+      "opcoes": ["A) 12", "B) 16", "C) 20", "D) 24"],
+      "resp": "D"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Simplificando a expressão 3x + 5y - x + 2y, obtemos:",
+      "opcoes": ["A) 4x + 7y", "B) 2x + 7y", "C) 2x + 3y", "D) 3x + 3y"],
+      "resp": "B"
+    }
+  ],
+  "D31": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "A solução da equação de 1º grau 3x + 4 = 19 é:",
+      "opcoes": ["A) x = 5", "B) x = 7", "C) x = 15", "D) x = 4"],
+      "resp": "A"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Qual o valor de x na equação 2x - 8 = 0?",
+      "opcoes": ["A) 2", "B) 4", "C) 8", "D) -4"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Se 5x - 10 = 2x + 8, qual o valor de x?",
+      "opcoes": ["A) 3", "B) 6", "C) 9", "D) 12"],
+      "resp": "B"
+    }
+  ],
+  "D32": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Qual é a raiz da equação x² - 5x + 6 = 0?",
+      "opcoes": ["A) 1 e 6", "B) 2 e 3", "C) -2 e -3", "D) 0 e 5"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Quais são as raízes da equação x² - 7x + 10 = 0?",
+      "opcoes": ["A) 2 e 5", "B) -2 e -5", "C) 3 e 4", "D) 1 e 10"],
+      "resp": "A"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Uma equação do 2º grau do tipo ax² + c = 0, onde b=0, é chamada de:",
+      "opcoes": ["A) Completa", "B) Incompleta", "C) Linear", "D) Identidade"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "O valor do discriminante (Delta) da equação x² - 4x + 4 = 0 é:",
+      "opcoes": ["A) 0", "B) 4", "C) 8", "D) 16"],
+      "resp": "A"
+    }
+  ],
+  "D33": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "No sistema x + y = 5 e x - y = 1, o valor de x é:",
+      "opcoes": ["A) 2", "B) 3", "C) 4", "D) 5"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Em um estacionamento há carros (4 rodas) e motos (2 rodas). Ao todo são 10 veículos e 32 rodas. Quantos carros há no local?",
+      "opcoes": ["A) 4", "B) 6", "C) 5", "D) 8"],
+      "resp": "B"
+    }
+  ],
+  "D34": [
+    {
+      "nivel": "Médio",
+      "enunciado": "Dada a função f(x) = 2x + 3, qual é o valor de f(5)?",
+      "opcoes": ["A) 10", "B) 13", "C) 8", "D) 15"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma função é dada por y = x². Se x = -4, qual o valor de y?",
+      "opcoes": ["A) -16", "B) 16", "C) -8", "D) 8"],
+      "resp": "B"
+    }
+  ],
+  "D35": [
+    {
+      "nivel": "Difícil",
+      "enunciado": "Na função y = -3x + 2, o coeficiente angular é:",
+      "opcoes": ["A) 2", "B) 3", "C) -3", "D) -2"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "O ponto onde a reta y = 2x - 6 corta o eixo y é:",
+      "opcoes": ["A) (0, 6)", "B) (6, 0)", "C) (0, -6)", "D) (3, 0)"],
+      "resp": "C"
+    }
+  ],
+  "D36": [
+    {
+      "nivel": "Médio",
+      "enunciado": "A tabela abaixo mostra o consumo de energia de uma residência nos últimos 3 meses. [D36_CONSUMO]\nQual foi a média mensal de consumo nesse período (em kWh)?",
+      "opcoes": ["A) 150 kWh", "B) 180 kWh", "C) 200 kWh", "D) 210 kWh"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Em uma pesquisa de opinião, 20 pessoas responderam 'Sim', 30 'Não' e 10 'Não sabem'. [D36_PIZZA]\nQual a porcentagem de pessoas que responderam 'Não'?",
+      "opcoes": ["A) 30%", "B) 50%", "C) 60%", "D) 20%"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Em uma lista de compras: Arroz R$ 20, Feijão R$ 8, Óleo R$ 6. [D36_LISTA]\nQual o valor total da compra?",
+      "opcoes": ["A) R$ 32,00", "B) R$ 34,00", "C) R$ 30,00", "D) R$ 28,00"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "A média aritmética das notas de um aluno em 4 bimestres foi 7,0. Se as três primeiras notas foram 6,0; 7,0 e 8,0, qual foi a quarta nota?",
+      "opcoes": ["A) 6,0", "B) 7,0", "C) 8,0", "D) 9,0"],
+      "resp": "B"
+    }
+  ],
+  "D37": [
+    {
+      "nivel": "Fácil",
+      "enunciado": "O gráfico de setores representa a preferência por esportes em uma escola. [D37_ESPORTES]\nSe 40% preferem futebol e a escola tem 500 alunos, quantos preferem futebol?",
+      "opcoes": ["A) 150", "B) 200", "C) 250", "D) 300"],
+      "resp": "B"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Observando um gráfico de linhas que mostra as vendas de uma loja por mês, notamos que em Janeiro foram vendidos 100 itens e em Fevereiro 150. [D37_LINHAS]\nQual foi o aumento nas vendas?",
+      "opcoes": [
+        "A) 50 unidades",
+        "B) 100 unidades",
+        "C) 250 unidades",
+        "D) 150 unidades"
+      ],
+      "resp": "A"
+    },
+    {
+      "nivel": "Difícil",
+      "enunciado": "Um gráfico de barras mostra a produção de duas fábricas (A e B) durante 4 meses. [D37_COMPARA]\nEm qual mês a diferença de produção entre elas foi maior?",
+      "opcoes": ["A) Mês 1", "B) Mês 2", "C) Mês 3", "D) Mês 4"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Fácil",
+      "enunciado": "Em um lançamento de um dado comum de 6 faces, qual é a probabilidade de sair um número par?",
+      "opcoes": ["A) 1/6", "B) 1/3", "C) 1/2", "D) 2/3"],
+      "resp": "C"
+    },
+    {
+      "nivel": "Médio",
+      "enunciado": "Uma urna contém 5 bolas brancas e 15 bolas pretas. [D37_URNA]\nRetirando-se uma bola ao acaso, qual a probabilidade dela ser branca?",
+      "opcoes": ["A) 25%", "B) 50%", "C) 75%", "D) 20%"],
+      "resp": "A"
+    }
+  ]
+}

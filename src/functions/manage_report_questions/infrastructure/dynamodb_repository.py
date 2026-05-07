@@ -18,38 +18,6 @@ class DynamoDBClient:
             endpoint_url=settings.DYNAMODB_ENDPOINT
         )
 
-    def create_new_table(self, table_name: str):
-        self.dynamodb.create_table(
-            TableName=table_name,
-            KeySchema=[
-                {'AttributeName': 'id', 'KeyType': 'HASH'},
-            ],
-            AttributeDefinitions=[
-                {'AttributeName': 'id', 'AttributeType': 'S'},
-            ],
-            ProvisionedThroughput={
-                'ReadCapacityUnits': 10,
-                'WriteCapacityUnits': 10
-            }
-        )
-
-
-    def check_table_exists(self, table_name: str):
-        try:
-            table = self.dynamodb.Table(table_name)
-            logger.debug(table.table_status)
-            return True
-        except ClientError:
-            logger.info("Table does not exist. Creating...", extra={"table_name": table_name})
-            return False
-
-
-    def db_setup(self, tables_to_create):
-        for table in tables_to_create:
-            if not self.check_table_exists(table["table_name"]):
-                self.create_new_table(table["table_name"])
-                logger.info("Successfully created table.", extra={"table_name": table["table_name"]})
-
 
     def save(self, table_name: str, new_item):
         try:
