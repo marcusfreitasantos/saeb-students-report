@@ -13,6 +13,8 @@ Resources:
         Variables:
           AWS_REGION: us-east-1
           DYNAMODB_ENDPOINT: http://host.docker.internal:8000
+          DYNAMO_QUESTIONS_TABLE: saeb_questions
+          DYNAMMO_INTERVENTIONS_TABLE: saeb_interventions
       Events:
         Api:
           Type: Api

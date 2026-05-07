@@ -1,7 +1,11 @@
 import boto3
+import logging
 from botocore.exceptions import ClientError
 from infrastructure.config.settings import settings
 from domain.entities.question import Question
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class DynamoDBClient:
@@ -14,16 +18,14 @@ class DynamoDBClient:
             endpoint_url=settings.DYNAMODB_ENDPOINT
         )
 
-    def create_new_table(self, table_name: str, sort_key: str):
+    def create_new_table(self, table_name: str):
         self.dynamodb.create_table(
             TableName=table_name,
             KeySchema=[
-                {'AttributeName': 'id', 'KeyType': 'HASH'},  # Partition key
-                {'AttributeName': sort_key, 'KeyType': 'RANGE'} # Sort key
+                {'AttributeName': 'id', 'KeyType': 'HASH'},
             ],
             AttributeDefinitions=[
                 {'AttributeName': 'id', 'AttributeType': 'S'},
-                {'AttributeName': sort_key, 'AttributeType': 'S'}
             ],
             ProvisionedThroughput={
                 'ReadCapacityUnits': 10,
@@ -35,47 +37,33 @@ class DynamoDBClient:
     def check_table_exists(self, table_name: str):
         try:
             table = self.dynamodb.Table(table_name)
-            print(table.table_status)
+            logger.debug(table.table_status)
             return True
         except ClientError:
-            print("Table does not exist. Creating...")
+            logger.info("Table does not exist. Creating...", extra={"table_name": table_name})
             return False
 
 
-    def db_setup(self):
-        tables_to_create = [
-            {
-                "table_name": "saeb_questions",
-                "sort_key": "descriptor"
-            },
-            {
-                "table_name": "saeb_interventions",
-                "sort_key": "category"
-            }
-        ]
-    
+    def db_setup(self, tables_to_create):
         for table in tables_to_create:
             if not self.check_table_exists(table["table_name"]):
-                self.create_new_table(table["table_name"], table["sort_key"])
-                print(f"Successfully created table '{table["table_name"]}'.")
+                self.create_new_table(table["table_name"])
+                logger.info("Successfully created table.", extra={"table_name": table["table_name"]})
 
 
-    def save(self, table_name: str, new_item: Question):
+    def save(self, table_name: str, new_item):
         try:
             table = self.dynamodb.Table(table_name)
         
             table.put_item(
-                Item={
-                    "id": new_item.id,
-                    "descriptor": new_item.descriptor,
-                    "level": new_item.level.value,
-                    "description": new_item.description,
-                    "options": new_item.options,
-                    "answer": new_item.answer,
-                }
+                Item=new_item
             )
         except ClientError as e:
-            print(f"Error occurred while inserting item into table '{table_name}': {e}")
+            logger.error(
+                f"Error occurred while inserting item into table: {e}.",
+                exc_info=True,
+                extra={"table_name": table_name, "item": new_item}
+            )
 
 
 
@@ -87,7 +75,11 @@ class DynamoDBClient:
                 Key={'id': item_to_delete}
             )
         except ClientError as e:
-            print(f"Error occurred while deleting item from table '{table_name}': {e}")
+            logger.error(
+                "Error occurred while deleting item from table.",
+                exc_info=True,
+                extra={"table_name": table_name, "item_key": item_to_delete}
+            )
 
 
     def get(self, table_name: str, item_key: str):
@@ -98,5 +90,9 @@ class DynamoDBClient:
                 Key={'id': item_key}
             )
         except ClientError as e:
-            print(f"Error occurred while fetching item from table '{table_name}': {e}")
+            logger.error(
+                "Error occurred while fetching item from table.",
+                exc_info=True,
+                extra={"table_name": table_name, "item_key": item_key}
+            )
             return None

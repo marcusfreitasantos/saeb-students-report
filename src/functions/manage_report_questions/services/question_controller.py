@@ -2,13 +2,13 @@ from application.questions_usecase import CreateQuestionUseCase
 
 
 class QuestionController:
-    def __init__(self, questions_batch, dynamo_client=None):
+    def __init__(self, questions_batch, db_client=None):
         self.questions_batch = questions_batch
-        self.dynamo_client = dynamo_client
+        self.db_client = db_client
 
 
     def create(self, question_data):
-        create_question = CreateQuestionUseCase(self.dynamo_client)
+        create_question = CreateQuestionUseCase(self.db_client)
 
         return create_question.build(
             question_data["descriptor"],

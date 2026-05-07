@@ -1,11 +1,23 @@
 import json
 from infrastructure.dynamodb_repository import DynamoDBClient
 from services.question_controller import QuestionController
+from infrastructure.config.settings import settings
+
 
 
 def process_questions_batch(questions_batch):
+
+    tables_to_create = [
+        {
+            "table_name": settings.DYNAMO_QUESTIONS_TABLE
+        },
+        {
+            "table_name": settings.DYNAMMO_INTERVENTIONS_TABLE
+        }
+    ]
+
     dynamodb_client = DynamoDBClient()
-    dynamodb_client.db_setup()
+    dynamodb_client.db_setup(tables_to_create)
     
     question_controller = QuestionController(questions_batch, dynamodb_client)
     result = question_controller.batch_create()
@@ -15,16 +27,13 @@ def process_questions_batch(questions_batch):
 
 def handler(event, context):
     try:
-        # Parse the body from API Gateway event
         body = event.get('body', '{}')
         
-        # If body is a string, parse it; otherwise it's already a dict
         if isinstance(body, str):
             payload = json.loads(body)
         else:
             payload = body
         
-        # Extract questions_batch from payload
         questions_batch = payload.get('questions_batch', [])
         
         if not questions_batch:

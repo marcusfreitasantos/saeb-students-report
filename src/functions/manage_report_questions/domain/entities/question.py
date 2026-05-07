@@ -1,6 +1,6 @@
 
 from enum import Enum
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import List
 
 class DifficultyLevel(Enum):
@@ -30,3 +30,8 @@ class Question:
             raise ValueError("options cannot be empty and must be a list of strings")
         if not self.answer or not isinstance(self.answer, str):
             raise ValueError("answer cannot be empty and must be a string")
+
+    def to_dict(self):
+        item = asdict(self)
+        item["level"] = self.level.value
+        return item
