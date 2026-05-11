@@ -25,10 +25,8 @@ resource "aws_dynamodb_table" "saeb_questions_dev" {
     enabled = true
   }
 
-  tags = {
-    Environment = "dev"
-    Project     = "saeb-students-report"
-  }
+  tags = local.common_tags
+
 }
 
 resource "aws_dynamodb_table" "saeb_interventions_dev" {
@@ -76,8 +74,6 @@ resource "aws_dynamodb_table" "saeb_interventions_dev" {
     enabled = true
   }
 
-  tags = {
-    Environment = "dev"
-    Project     = "saeb-students-report"
-  }
+  tags = local.common_tags
+
 }
