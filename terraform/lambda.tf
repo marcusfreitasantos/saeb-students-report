@@ -12,9 +12,8 @@ resource "aws_lambda_function" "manage_report_questions" {
 
   environment {
     variables = {
-      DYNAMODB_ENDPOINT          = ""
-      DYNAMO_QUESTIONS_TABLE     = ""
-      DYNAMMO_INTERVENTIONS_TABLE = ""
+      DYNAMO_QUESTIONS_TABLE = var.DYNAMO_QUESTIONS_TABLE
+      DYNAMMO_INTERVENTIONS_TABLE = var.DYNAMMO_INTERVENTIONS_TABLE
     }
   }
 
