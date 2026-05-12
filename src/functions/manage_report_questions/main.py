@@ -4,6 +4,10 @@ from services.question_controller import QuestionController
 from services.intervention_controller import InterventionController
 from utils.seed_questions import seed_questions_table
 from utils.seed_interventions import seed_interventions_table
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def route_request(path, method, payload):
@@ -44,18 +48,15 @@ def route_request(path, method, payload):
 
 def handler(event, context):
     try:
-        # Extract request information
-        path = event.get('requestContext', {}).get('resourcePath', '')
+        path = event.get('rawPath', '') or event.get("path", "")
         method = event.get('httpMethod', 'POST')
         body = event.get('body', '{}')
         
-        # Parse body
         if isinstance(body, str):
             payload = json.loads(body)
         else:
             payload = body
         
-        # Route to appropriate handler
         status_code, response_body = route_request(path, method, payload)
         
         return {
@@ -65,6 +66,7 @@ def handler(event, context):
         }
     
     except json.JSONDecodeError as e:
+        logger.error(f"Error with lambda event: {str(e)}")
         return {
             'statusCode': 400,
             'headers': {'Content-Type': 'application/json'},
@@ -72,6 +74,7 @@ def handler(event, context):
         }
     
     except Exception as e:
+        logger.error(f"Error with lambda event: {str(e)}")
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json'},

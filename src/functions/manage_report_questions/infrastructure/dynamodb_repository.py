@@ -2,21 +2,24 @@ import boto3
 import logging
 from botocore.exceptions import ClientError
 from infrastructure.config.settings import settings
-from domain.entities.question import Question
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-
 class DynamoDBClient:
     def __init__(self):
-        self.dynamodb = boto3.resource(
-            'dynamodb',
-            region_name="us-east-1",
-            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
-            endpoint_url=settings.DYNAMODB_ENDPOINT
-        )
+        dynamodb_params = {
+            "service_name": "dynamodb",
+            "region_name": "us-east-1"
+        }
+
+        print(settings.DYNAMODB_ENDPOINT)
+        logger.error(settings.DYNAMODB_ENDPOINT)
+
+        if settings.DYNAMODB_ENDPOINT:
+            dynamodb_params["endpoint_url"] = settings.DYNAMODB_ENDPOINT
+
+        self.dynamodb = boto3.resource(**dynamodb_params)
 
 
     def save(self, table_name: str, new_item):
@@ -32,6 +35,7 @@ class DynamoDBClient:
                 exc_info=True,
                 extra={"table_name": table_name, "item": new_item}
             )
+            raise
 
 
 
@@ -48,6 +52,7 @@ class DynamoDBClient:
                 exc_info=True,
                 extra={"table_name": table_name, "item_key": item_to_delete}
             )
+            raise
 
 
     def get(self, table_name: str, item_key: str):
@@ -63,4 +68,4 @@ class DynamoDBClient:
                 exc_info=True,
                 extra={"table_name": table_name, "item_key": item_key}
             )
-            return None
+            raise

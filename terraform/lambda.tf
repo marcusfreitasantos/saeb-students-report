@@ -4,6 +4,9 @@ resource "aws_lambda_function" "manage_report_questions" {
   s3_bucket = aws_s3_bucket.lambda_artifacts.id
   s3_key    = aws_s3_object.lambda_zip.key
 
+  source_code_hash = filebase64sha256(local.lambda_build_path.manage_report_questions)
+
+
   role = aws_iam_role.saeb_lambda_role.arn
 
   handler = "main.handler"
