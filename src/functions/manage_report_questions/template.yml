@@ -15,6 +15,11 @@ Resources:
           DYNAMO_QUESTIONS_TABLE: saeb_questions
           DYNAMMO_INTERVENTIONS_TABLE: saeb_interventions
       Events:
+        GetQuestions:
+          Type: Api
+          Properties:
+            Path: /questions/all
+            Method: get
         CreateQuestion:
           Type: Api
           Properties:

@@ -10,7 +10,7 @@ class DynamoDBClient:
     def __init__(self):
         dynamodb_params = {
             "service_name": "dynamodb",
-            "region_name": "us-east-1"
+            "region_name": "us-east-1",
         }
 
         print(settings.DYNAMODB_ENDPOINT)
@@ -48,9 +48,9 @@ class DynamoDBClient:
             )
         except ClientError as e:
             logger.error(
-                "Error occurred while deleting item from table.",
+                f"Error occurred while deleting item from table: {e}.",
                 exc_info=True,
-                extra={"table_name": table_name, "item_key": item_to_delete}
+                extra={"table_name": table_name}
             )
             raise
 
@@ -64,8 +64,28 @@ class DynamoDBClient:
             )
         except ClientError as e:
             logger.error(
-                "Error occurred while fetching item from table.",
+                f"Error occurred while fetching items from table: {e}.",
                 exc_info=True,
-                extra={"table_name": table_name, "item_key": item_key}
+                extra={"table_name": table_name}
+            )
+            raise
+    
+    def list(self, table_name: str):
+        try:
+            table = self.dynamodb.Table(table_name)
+
+            response = table.scan()
+            items = response['Items']
+
+            while 'LastEvaluatedKey' in response:
+                response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
+                items.extend(response['Items'])
+
+            return items
+        except ClientError as e:
+            logger.error(
+                f"Error occurred while fetching items from table: {e}.",
+                exc_info=True,
+                extra={"table_name": table_name}
             )
             raise

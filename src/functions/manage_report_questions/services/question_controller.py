@@ -1,14 +1,14 @@
-from application.questions_usecase import CreateQuestionUseCase
+from application.questions_usecase import QuestionUseCase
 
 
 class QuestionController:
-    def __init__(self, questions_batch, db_client=None):
+    def __init__(self, questions_batch = [], db_client=None):
         self.questions_batch = questions_batch
         self.db_client = db_client
 
 
     def create(self, question_data):
-        create_question = CreateQuestionUseCase(self.db_client)
+        create_question = QuestionUseCase(self.db_client)
 
         return create_question.build(
             question_data["descriptor"],
@@ -22,4 +22,8 @@ class QuestionController:
         for batch in self.questions_batch:
             self.create(batch)
         return f'All {str(len(self.questions_batch))} questions sucessfully created.'
+    
+    def list(self):
+        questions = QuestionUseCase(self.db_client)
+        return questions.list()
 

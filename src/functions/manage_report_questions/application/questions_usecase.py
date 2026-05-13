@@ -3,7 +3,7 @@ from domain.entities.question import Question
 from domain.entities.question import DifficultyLevel
 from infrastructure.config.settings import settings
 
-class CreateQuestionUseCase:
+class QuestionUseCase:
 
     questions_table_name = settings.DYNAMO_QUESTIONS_TABLE
 
@@ -30,3 +30,7 @@ class CreateQuestionUseCase:
 
         self.repository.save(self.questions_table_name, new_question.to_dict())
         return new_question
+    
+    def list(self): 
+        questions_found = self.repository.list(self.questions_table_name)
+        return questions_found
