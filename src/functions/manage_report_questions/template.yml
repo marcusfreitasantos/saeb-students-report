@@ -20,11 +20,30 @@ Resources:
           Properties:
             Path: /questions/all
             Method: get
+            RequestParameters:
+              - method.request.querystring.limit:
+                  Required: false
+                  Caching: false
+              - method.request.querystring.next_token:
+                  Required: false
+                  Caching: false
         CreateQuestion:
           Type: Api
           Properties:
             Path: /questions/create
             Method: post
+        GetInterventions:
+          Type: Api
+          Properties:
+            Path: /interventions/all
+            Method: get
+            RequestParameters:
+              - method.request.querystring.limit:
+                  Required: false
+                  Caching: false
+              - method.request.querystring.next_token:
+                  Required: false
+                  Caching: false
         CreateIntervention:
           Type: Api
           Properties:

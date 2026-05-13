@@ -23,7 +23,13 @@ class QuestionController:
             self.create(batch)
         return f'All {str(len(self.questions_batch))} questions sucessfully created.'
     
-    def list(self):
+    def list(self, params):
         questions = QuestionUseCase(self.db_client)
-        return questions.list()
+        
+        try:
+            limit = int((params or {}).get("limit", 10))
+        except (TypeError, ValueError):
+            limit = 10
+
+        return questions.list(limit)
 

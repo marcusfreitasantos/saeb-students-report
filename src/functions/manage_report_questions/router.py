@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-def route_request(path, method, payload):
+def route_request(path, method, payload, params):
     dynamodb_client = DynamoDBClient()
 
     if path == '/questions/create' and method == 'POST':
@@ -26,9 +26,9 @@ def route_request(path, method, payload):
         result = question_controller.batch_create()
         return 200, {'success': True, 'message': result}
     
-    if path == '/questions/all' and method == 'GET':        
+    elif path == '/questions/all' and method == 'GET':        
         question_controller = QuestionController([], dynamodb_client)
-        result = question_controller.list()
+        result = question_controller.list(params)
         return 200, result
     
     elif path == '/interventions/create' and method == 'POST':
@@ -44,6 +44,11 @@ def route_request(path, method, payload):
         intervention_controller = InterventionController(interventions_batch, dynamodb_client)
         result = intervention_controller.batch_create()
         return 200, {'success': True, 'message': result}
+    
+    elif path == '/interventions/all' and method == 'GET':        
+        intervention_controller = InterventionController([], dynamodb_client)
+        result = intervention_controller.list()
+        return 200, result
     
     else:
         return 404, {'error': f'Route {method} {path} not found'}

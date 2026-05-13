@@ -70,18 +70,12 @@ class DynamoDBClient:
             )
             raise
     
-    def list(self, table_name: str):
+    def list(self, table_name: str, limit: int):
         try:
             table = self.dynamodb.Table(table_name)
+            response = table.scan(Limit=limit)
 
-            response = table.scan()
-            items = response['Items']
-
-            while 'LastEvaluatedKey' in response:
-                response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
-                items.extend(response['Items'])
-
-            return items
+            return {"total": len(response["Items"]), "next_token": response.get("LastEvaluatedKey", None), "items": response['Items']}
         except ClientError as e:
             logger.error(
                 f"Error occurred while fetching items from table: {e}.",

@@ -10,13 +10,14 @@ def handler(event, context):
         path = event.get('rawPath', '') or event.get("path", "")
         method = event.get('httpMethod', 'POST')
         body = event.get('body', '{}')
-        
+        params = event.get('queryStringParameters', {})
+
         if isinstance(body, str):
             payload = json.loads(body)
         else:
             payload = body
         
-        status_code, response_body = route_request(path, method, payload)
+        status_code, response_body = route_request(path, method, payload, params)
         
         return {
             'statusCode': status_code,

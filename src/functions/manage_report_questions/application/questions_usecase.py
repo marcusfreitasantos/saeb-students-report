@@ -31,6 +31,6 @@ class QuestionUseCase:
         self.repository.save(self.questions_table_name, new_question.to_dict())
         return new_question
     
-    def list(self): 
-        questions_found = self.repository.list(self.questions_table_name)
-        return questions_found
+    def list(self, limit: int): 
+        items_found = self.repository.list(self.questions_table_name, limit)
+        return items_found

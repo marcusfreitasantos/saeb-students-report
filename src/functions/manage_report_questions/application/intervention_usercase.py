@@ -3,7 +3,7 @@ from domain.entities.intervention import Intervention
 from domain.entities.intervention import InterventionData
 from infrastructure.config.settings import settings
 
-class CreateInterventionUseCase:
+class InterventionUseCase:
 
     interventions_table_name = settings.DYNAMMO_INTERVENTIONS_TABLE
 
@@ -22,3 +22,7 @@ class CreateInterventionUseCase:
 
         self.repository.save(self.interventions_table_name, new_intervention.to_dict())
         return new_intervention
+    
+    def list(self): 
+        items_found = self.repository.list(self.interventions_table_name)
+        return items_found

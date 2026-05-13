@@ -1,4 +1,4 @@
-from application.intervention_usercase import CreateInterventionUseCase
+from application.intervention_usercase import InterventionUseCase
 from domain.entities.intervention import InterventionData
 
 
@@ -9,7 +9,7 @@ class InterventionController:
 
 
     def create(self, intervention_data):
-        create_intervention = CreateInterventionUseCase(self.db_client)
+        create_intervention = InterventionUseCase(self.db_client)
 
         intervention_details = [
             InterventionData(**item)
@@ -27,4 +27,8 @@ class InterventionController:
         for batch in self.interventions_batch:
             self.create(batch)
         return f'All {str(len(self.interventions_batch))} interventions sucessfully created.'
+    
+    def list(self):
+        interventions = InterventionUseCase(self.db_client)
+        return interventions.list()
 
