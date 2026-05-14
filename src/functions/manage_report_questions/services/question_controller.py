@@ -28,8 +28,11 @@ class QuestionController:
         
         try:
             limit = int((params or {}).get("limit", 10))
+            next_token = (params or {}).get("next_token", "")
+
         except (TypeError, ValueError):
             limit = 10
+            next_token = ""
 
-        return questions.list(limit)
+        return questions.list(limit, next_token)
 

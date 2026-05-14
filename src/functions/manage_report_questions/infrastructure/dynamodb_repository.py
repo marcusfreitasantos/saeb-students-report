@@ -70,10 +70,14 @@ class DynamoDBClient:
             )
             raise
     
-    def list(self, table_name: str, limit: int):
+    def list(self, table_name: str, limit: int, next_token: str):
         try:
             table = self.dynamodb.Table(table_name)
-            response = table.scan(Limit=limit)
+
+            if(next_token):
+                response = table.scan(Limit=limit, ExclusiveStartKey={"id": next_token})
+            else:
+                response = table.scan(Limit=limit)
 
             return {"total": len(response["Items"]), "next_token": response.get("LastEvaluatedKey", None), "items": response['Items']}
         except ClientError as e:

@@ -33,8 +33,11 @@ class InterventionController:
         
         try:
             limit = int((params or {}).get("limit", 10))
+            next_token = (params or {}).get("next_token", "")
+
         except (TypeError, ValueError):
             limit = 10
+            next_token = ""
 
-        return interventions.list(limit)
+        return interventions.list(limit, next_token)
 
