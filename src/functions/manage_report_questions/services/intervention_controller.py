@@ -28,7 +28,13 @@ class InterventionController:
             self.create(batch)
         return f'All {str(len(self.interventions_batch))} interventions sucessfully created.'
     
-    def list(self):
+    def list(self, params):
         interventions = InterventionUseCase(self.db_client)
-        return interventions.list()
+        
+        try:
+            limit = int((params or {}).get("limit", 10))
+        except (TypeError, ValueError):
+            limit = 10
+
+        return interventions.list(limit)
 

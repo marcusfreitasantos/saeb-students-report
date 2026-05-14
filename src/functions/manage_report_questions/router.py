@@ -47,7 +47,7 @@ def route_request(path, method, payload, params):
     
     elif path == '/interventions/all' and method == 'GET':        
         intervention_controller = InterventionController([], dynamodb_client)
-        result = intervention_controller.list()
+        result = intervention_controller.list(params)
         return 200, result
     
     else:

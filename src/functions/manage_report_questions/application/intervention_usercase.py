@@ -23,6 +23,6 @@ class InterventionUseCase:
         self.repository.save(self.interventions_table_name, new_intervention.to_dict())
         return new_intervention
     
-    def list(self): 
-        items_found = self.repository.list(self.interventions_table_name)
+    def list(self, limit: int): 
+        items_found = self.repository.list(self.interventions_table_name, limit)
         return items_found
