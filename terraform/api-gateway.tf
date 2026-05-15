@@ -21,10 +21,24 @@ resource "aws_apigatewayv2_route" "create_question" {
   target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 
+resource "aws_apigatewayv2_route" "list_questions" {
+  api_id = aws_apigatewayv2_api.saeb_api.id
+
+  route_key = "GET /questions/all"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
 resource "aws_apigatewayv2_route" "create_intervention" {
   api_id = aws_apigatewayv2_api.saeb_api.id
 
   route_key = "POST /interventions/create"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "list_interventions" {
+  api_id = aws_apigatewayv2_api.saeb_api.id
+
+  route_key = "GET /interventions/all"
   target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 
@@ -35,6 +49,7 @@ resource "aws_lambda_permission" "api_gateway" {
   function_name = aws_lambda_function.manage_report_questions.function_name
 
   principal = "apigateway.amazonaws.com"
+  source_arn = "${aws_apigatewayv2_api.saeb_api.execution_arn}/*/*"
 }
 
 resource "aws_apigatewayv2_stage" "default" {

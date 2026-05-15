@@ -7,9 +7,19 @@ logger.setLevel(logging.INFO)
 
 def handler(event, context):
     try:
-        path = event.get('rawPath', '') or event.get("path", "")
-        method = event.get('httpMethod', 'POST')
-        body = event.get('body', '{}')
+        path = (
+            event
+            .get("requestContext", {})
+            .get("http", {})
+            .get("path")
+        )
+        method = (
+            event
+            .get("requestContext", {})
+            .get("http", {})
+            .get("method")
+        )
+        body = event.get('body') or {}
         params = event.get('queryStringParameters', {})
 
         if isinstance(body, str):
