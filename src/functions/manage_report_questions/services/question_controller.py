@@ -1,6 +1,5 @@
 from application.questions_usecase import QuestionUseCase
 
-
 class QuestionController:
     def __init__(self, questions_batch = [], db_client=None):
         self.questions_batch = questions_batch

@@ -70,12 +70,12 @@ class DynamoDBClient:
             )
             raise
     
-    def list(self, table_name: str, limit: int, next_token: str):
+    def list(self, table_name: str, limit: int, next_token: dict):
         try:
             table = self.dynamodb.Table(table_name)
 
             if(next_token):
-                response = table.scan(Limit=limit, ExclusiveStartKey={"id": next_token})
+                response = table.scan(Limit=limit, ExclusiveStartKey=next_token)
             else:
                 response = table.scan(Limit=limit)
 

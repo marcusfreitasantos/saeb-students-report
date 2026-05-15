@@ -2,6 +2,7 @@ import uuid
 from domain.entities.question import Question
 from domain.entities.question import DifficultyLevel
 from infrastructure.config.settings import settings
+import json
 
 class QuestionUseCase:
 
@@ -32,5 +33,6 @@ class QuestionUseCase:
         return new_question
     
     def list(self, limit: int, next_token: str): 
-        items_found = self.repository.list(self.questions_table_name, limit, next_token)
+        next_token_data = json.loads(next_token) if next_token else {}
+        items_found = self.repository.list(self.questions_table_name, limit, next_token_data)
         return items_found

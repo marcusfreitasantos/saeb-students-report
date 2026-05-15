@@ -2,6 +2,7 @@ import uuid
 from domain.entities.intervention import Intervention
 from domain.entities.intervention import InterventionData
 from infrastructure.config.settings import settings
+import json
 
 class InterventionUseCase:
 
@@ -24,5 +25,6 @@ class InterventionUseCase:
         return new_intervention
     
     def list(self, limit: int, next_token: str): 
-        items_found = self.repository.list(self.interventions_table_name, limit, next_token)
+        next_token_data = json.loads(next_token) if next_token else {}
+        items_found = self.repository.list(self.interventions_table_name, limit, next_token_data)
         return items_found

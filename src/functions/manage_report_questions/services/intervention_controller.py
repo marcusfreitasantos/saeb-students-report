@@ -1,5 +1,6 @@
 from application.intervention_usercase import InterventionUseCase
 from domain.entities.intervention import InterventionData
+import json
 
 
 class InterventionController:
@@ -34,6 +35,7 @@ class InterventionController:
         try:
             limit = int((params or {}).get("limit", 10))
             next_token = (params or {}).get("next_token", "")
+
 
         except (TypeError, ValueError):
             limit = 10
