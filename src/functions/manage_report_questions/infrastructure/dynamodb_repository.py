@@ -10,7 +10,7 @@ class DynamoDBClient:
     def __init__(self):
         dynamodb_params = {
             "service_name": "dynamodb",
-            "region_name": "us-east-1",
+            "region_name": "sa-east-1",
         }
 
         print(settings.DYNAMODB_ENDPOINT)
