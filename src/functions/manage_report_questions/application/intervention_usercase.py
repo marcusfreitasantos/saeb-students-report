@@ -6,7 +6,7 @@ import json
 
 class InterventionUseCase:
 
-    interventions_table_name = settings.DYNAMMO_INTERVENTIONS_TABLE
+    interventions_table_name = settings.DYNAMO_INTERVENTIONS_TABLE
 
     def __init__(self, repository):
         self.repository = repository
