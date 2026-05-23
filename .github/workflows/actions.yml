@@ -1,0 +1,63 @@
+name: Deploy Lambda
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: sa-east-1
+  S3_BUCKET: lambda-artifacts
+
+  # LAMBDA MANAGE REPORT QUESTIONS
+  MANAGE_REPORT_QUESTIONS_LAMBDA: manage-report-questions
+  MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP: manage-report-questions-${{ github.sha }}.zip
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup AWS SAM
+        uses: aws-actions/setup-sam@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: SAM build
+        run: |
+          cd src/functions/manage_report_questions
+          sam build
+
+      - name: Zip lambda
+        run: |
+          cd src/functions/manage_report_questions/.aws-sam/build/ManageReportQuestionsFunction
+          zip -r ../../../${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} .
+
+      - name: Upload artifact to S3
+        run: |
+          aws s3 cp ${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} s3://${S3_BUCKET}/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
+
+      - name: Deploy lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name ${MANAGE_REPORT_QUESTIONS_LAMBDA} \
+            --s3-bucket ${S3_BUCKET} \
+            --s3-key ${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
+
+      - name: Wait for update
+        run: |
+          aws lambda wait function-updated \
+            --function-name ${MANAGE_REPORT_QUESTIONS_LAMBDA}
