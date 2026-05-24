@@ -13,9 +13,6 @@ class DynamoDBClient:
             "region_name": "sa-east-1",
         }
 
-        print(settings.DYNAMODB_ENDPOINT)
-        logger.error(settings.DYNAMODB_ENDPOINT)
-
         if settings.DYNAMODB_ENDPOINT:
             dynamodb_params["endpoint_url"] = settings.DYNAMODB_ENDPOINT
 
@@ -38,7 +35,6 @@ class DynamoDBClient:
             raise
 
 
-
     def delete(self, table_name: str, item_to_delete: str):
         try:
             table = self.dynamodb.Table(table_name)
@@ -53,22 +49,7 @@ class DynamoDBClient:
                 extra={"table_name": table_name}
             )
             raise
-
-
-    def get(self, table_name: str, item_key: str):
-        try:
-            table = self.dynamodb.Table(table_name)
-        
-            return table.get_item(
-                Key={'id': item_key}
-            )
-        except ClientError as e:
-            logger.error(
-                f"Error occurred while fetching items from table: {e}.",
-                exc_info=True,
-                extra={"table_name": table_name}
-            )
-            raise
+    
     
     def list(self, table_name: str, limit: int, next_token: dict):
         try:

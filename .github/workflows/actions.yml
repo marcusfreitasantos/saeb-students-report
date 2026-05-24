@@ -43,17 +43,17 @@ jobs:
 
       - name: SAM build
         run: |
-          cd src/functions/manage_report_questions
+          cd src/functions/manage-report-questions
           sam build
 
       - name: Zip lambda
         run: |
-          cd src/functions/manage_report_questions/.aws-sam/build/ManageReportQuestionsFunction
+          cd src/functions/manage-report-questions/.aws-sam/build/ManageReportQuestionsFunction
           zip -r ../../../${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} .
 
       - name: Upload artifact to S3
         run: |
-          aws s3 cp src/functions/manage_report_questions/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} s3://${S3_BUCKET}/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
+          aws s3 cp src/functions/manage-report-questions/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} s3://${S3_BUCKET}/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
 
       - name: Deploy lambda
         run: |
