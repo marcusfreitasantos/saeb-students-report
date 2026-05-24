@@ -1,7 +1,5 @@
 from application.intervention_usercase import InterventionUseCase
 from domain.entities.intervention import InterventionData
-import json
-
 
 class InterventionController:
     def __init__(self, interventions_batch, db_client=None):

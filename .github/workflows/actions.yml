@@ -3,11 +3,15 @@ name: Deploy Lambda
 on:
   push:
     branches:
-      - main
+      - prd
+      - stg
+      - dev
 
 env:
   AWS_REGION: sa-east-1
-  S3_BUCKET: lambda-artifacts
+  S3_BUCKET: saeb-lambda-artifacts
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   # LAMBDA MANAGE REPORT QUESTIONS
   MANAGE_REPORT_QUESTIONS_LAMBDA: manage-report-questions
@@ -15,6 +19,7 @@ env:
 
 jobs:
   deploy:
+    environment: ${{ github.ref == 'refs/heads/prd' && 'prd' || github.ref == 'refs/heads/dev' && 'dev' || github.ref == 'refs/heads/stg' && 'stg' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -32,8 +37,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: SAM build
@@ -48,7 +53,7 @@ jobs:
 
       - name: Upload artifact to S3
         run: |
-          aws s3 cp ${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} s3://${S3_BUCKET}/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
+          aws s3 cp src/functions/manage_report_questions/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} s3://${S3_BUCKET}/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
 
       - name: Deploy lambda
         run: |
