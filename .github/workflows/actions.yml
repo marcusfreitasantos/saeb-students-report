@@ -53,7 +53,7 @@ jobs:
 
       - name: Upload artifact to S3
         run: |
-          aws s3 cp ${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} s3://${S3_BUCKET}/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
+          aws s3 cp src/functions/manage_report_questions/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP} s3://${S3_BUCKET}/${MANAGE_REPORT_QUESTIONS_LAMBDA_ZIP}
 
       - name: Deploy lambda
         run: |
