@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  GeneratePresignedUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: main.handler
+      Runtime: python3.12
+      Timeout: 30
+      Environment:
+        Variables:
+          BUCKET_ENDPOINT: https://localhost.localstack.cloud:4566
+          S3_ASSETS_BUCKET_NAME: saeb-report-assets
+      Events:
+        SaveInputFile:
+          Type: HttpApi
+          Properties:
+            Path: /report/generate-url
+            Method: post
