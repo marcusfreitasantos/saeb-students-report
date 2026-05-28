@@ -11,7 +11,7 @@ class BucketUseCase:
         month = now.month
         year = date.today().year
 
-        key = f"input-files/{year}/{month}/{day}/{uuid.uuid4()}/students-data.xlsx"
+        key = f"input-files/{year}/{month}/{day}/{uuid.uuid4()}"
         signed_url = self.repository.presigned_url(key)
         return signed_url
     
