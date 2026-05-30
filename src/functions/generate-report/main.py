@@ -6,6 +6,7 @@ logger.setLevel(logging.INFO)
 
 def handler(event, context):
     try:        
+        logger.info(f"Received event: {json.dumps(event)}")
         return {
             'statusCode': 200,
             'headers': {'Content-Type': 'application/json'},
