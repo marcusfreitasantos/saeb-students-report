@@ -12,3 +12,4 @@ Resources:
       Environment:
         Variables:
           S3_OUTPUT_BUCKET_NAME: saeb-student-report
+          DYNAMO_REPORTS_TABLE: saeb_reports_local
