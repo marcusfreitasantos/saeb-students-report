@@ -50,8 +50,10 @@ create_table_if_not_exists saeb_reports_local \
   --table-name saeb_reports_local \
   --attribute-definitions \
     AttributeName=id,AttributeType=S \
+    AttributeName=filekey,AttributeType=S \
   --key-schema \
     AttributeName=id,KeyType=HASH \
+  --global-secondary-indexes '[{"IndexName":"GetByFilekey","KeySchema":[{"AttributeName":"filekey","KeyType":"HASH"}],"Projection":{"ProjectionType":"ALL"}}]' \
   --billing-mode PAY_PER_REQUEST
 
 echo "DynamoDB tables created successfully!"

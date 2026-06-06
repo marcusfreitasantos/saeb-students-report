@@ -14,7 +14,6 @@ class Event:
     filekey: str
     status: StatusType
     downloadUrl: str
-    expirationDate: str
     createdAt: str
     error: str = None
 

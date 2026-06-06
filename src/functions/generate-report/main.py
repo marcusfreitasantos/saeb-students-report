@@ -13,7 +13,7 @@ def handler(event, context):
         db_client = DynamoDBClient()
         event_controller = EventController(event_data=event, db_client=db_client)
         
-        created_event = event_controller.create(event, "STARTED", "")
+        created_event = event_controller.handle(event)
 
         logger.info(f"Created event: {json.dumps(created_event.to_dict())}")
         

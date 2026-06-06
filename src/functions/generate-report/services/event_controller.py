@@ -1,4 +1,4 @@
-from application.event_usercase import EventUseCase
+from application.event_usecase import EventUseCase
 from datetime import datetime
 
 
@@ -8,18 +8,16 @@ class EventController:
         self.db_client = db_client
 
 
-    def create(self, event_data, status: str, error: str):
+    def handle(self, event_data):
         create_event = EventUseCase(self.db_client)
         now = datetime.now()
         fileKey = f"{event_data['Records'][0]['s3']['bucket']['name']}/{event_data['Records'][0]['s3']['object']['key']}"
 
         return create_event.build(
             fileKey,
-            status,
-            error,
-            "",
+            "STARTED",
             now.isoformat(),
-            ""
+            None,
         )
 
     
