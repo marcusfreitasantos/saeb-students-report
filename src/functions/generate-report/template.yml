@@ -15,3 +15,13 @@ Resources:
           S3_INPUT_BUCKET_NAME: saeb-report-assets
           S3_OUTPUT_BUCKET_NAME: saeb-student-reports
           DYNAMO_REPORTS_TABLE: saeb_reports_local
+      Events:
+        GetReportStatus:
+          Type: HttpApi
+          Properties:
+            Path: /report/status
+            Method: get
+            RequestParameters:
+              - method.request.querystring.filekey:
+                  Required: true
+                  Caching: true

@@ -1,12 +1,15 @@
 import boto3
 import logging
 from botocore.exceptions import ClientError
+from boto3.dynamodb.conditions import Key
 from infrastructure.config.settings import settings
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 class DynamoDBClient:
+    filekey_index_name = "GetByFilekey"
+
     def __init__(self):
         dynamodb_params = {
             "service_name": "dynamodb",
@@ -36,36 +39,32 @@ class DynamoDBClient:
             raise
 
 
-    def delete(self, table_name: str, item_to_delete: str):
+    def get(self, table_name: str, filekey: str):
         try:
             table = self.dynamodb.Table(table_name)
+
+            logger.info(
+                f"Getting most recent item from DynamoDB table: {table_name}, filekey: {filekey}, gsi: {self.filekey_index_name}"
+            )
+
+            response = table.query(
+                IndexName=self.filekey_index_name,
+                KeyConditionExpression=Key("filekey").eq(filekey),
+                ScanIndexForward=False,
+                Limit=1,
+            )
+            items = response.get("Items", [])
+
+            return next(iter(items), None)
         
-            table.delete_item(
-                Key={'id': item_to_delete}
-            )
         except ClientError as e:
             logger.error(
-                f"Error occurred while deleting item from table: {e}.",
+                f"Error occurred while getting item from table: {e}.",
                 exc_info=True,
-                extra={"table_name": table_name}
-            )
-            raise
-    
-    
-    def list(self, table_name: str, limit: int, next_token: dict):
-        try:
-            table = self.dynamodb.Table(table_name)
-
-            if(next_token):
-                response = table.scan(Limit=limit, ExclusiveStartKey=next_token)
-            else:
-                response = table.scan(Limit=limit)
-
-            return {"total": len(response["Items"]), "next_token": response.get("LastEvaluatedKey", None), "items": response['Items']}
-        except ClientError as e:
-            logger.error(
-                f"Error occurred while fetching items from table: {e}.",
-                exc_info=True,
-                extra={"table_name": table_name}
+                extra={
+                    "table_name": table_name,
+                    "filekey": filekey,
+                    "gsi_name": self.filekey_index_name,
+                }
             )
             raise

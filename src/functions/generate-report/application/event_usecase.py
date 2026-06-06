@@ -85,7 +85,5 @@ class EventUseCase:
             raise
 
 
-    def list(self, limit: int, next_token: str): 
-        next_token_data = json.loads(next_token) if next_token else {}
-        items_found = self.repository.list(self.reports_table_name, limit, next_token_data)
-        return items_found
+    def get_item(self, filekey: str): 
+        return self.repository.get(self.reports_table_name, filekey)

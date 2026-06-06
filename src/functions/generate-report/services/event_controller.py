@@ -21,16 +21,6 @@ class EventController:
         )
 
     
-    def list(self, params):
-        events = EventUseCase(self.db_client)
-        
-        try:
-            limit = int((params or {}).get("limit", 10))
-            next_token = (params or {}).get("next_token", "")
-
-        except (TypeError, ValueError):
-            limit = 10
-            next_token = ""
-
-        return events.list(limit, next_token)
-
+    def get_item(self, filekey: str):
+        events = EventUseCase(self.db_client)       
+        return events.get_item(filekey)
