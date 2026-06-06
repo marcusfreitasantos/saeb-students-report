@@ -11,7 +11,7 @@ services:
       - SERVICES=s3,dynamodb,sqs,lambda,apigateway,cloudwatch,iam
       - DEBUG=1
       - PERSISTENCE=1
-      - S3_SKIP_SIGNATURE_VALIDATION=0
+      - S3_SKIP_SIGNATURE_VALIDATION=1
     volumes:
       - "./localstack/init:/etc/localstack/init"
       - "./localstack/data:/var/lib/localstack"
