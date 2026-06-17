@@ -2,7 +2,6 @@ import uuid
 from domain.entities.event import Event
 from domain.entities.event import StatusType
 from infrastructure.config.settings import settings
-import json
 from botocore.exceptions import ClientError
 import logging
 

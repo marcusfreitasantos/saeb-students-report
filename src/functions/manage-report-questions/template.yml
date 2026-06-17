@@ -12,8 +12,8 @@ Resources:
       Environment:
         Variables:
           DYNAMODB_ENDPOINT: http://host.docker.internal:8000
-          DYNAMO_QUESTIONS_TABLE: saeb_questions
-          DYNAMO_INTERVENTIONS_TABLE: saeb_interventions
+          DYNAMO_QUESTIONS_TABLE: saeb_questions_local
+          DYNAMO_INTERVENTIONS_TABLE: saeb_interventions_local
       Events:
         GetQuestions:
           Type: HttpApi

@@ -36,8 +36,12 @@ def normalize_localstack_endpoint(endpoint: str | None) -> str | None:
 class Settings:
     AWS_REGION = os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "sa-east-1"
     DYNAMODB_ENDPOINT = normalize_localstack_endpoint(os.getenv("DYNAMODB_ENDPOINT"))
+    BUCKET_ENDPOINT = normalize_localstack_endpoint(os.getenv("BUCKET_ENDPOINT"))
+    DYNAMO_QUESTIONS_TABLE= os.getenv("DYNAMO_QUESTIONS_TABLE")
+    DYNAMO_INTERVENTIONS_TABLE= os.getenv("DYNAMO_INTERVENTIONS_TABLE")
     DYNAMO_REPORTS_TABLE= os.getenv("DYNAMO_REPORTS_TABLE")
     S3_INPUT_BUCKET_NAME= os.getenv("S3_INPUT_BUCKET_NAME")
     S3_OUTPUT_BUCKET_NAME= os.getenv("S3_OUTPUT_BUCKET_NAME")
+    S3_STATIC_BUCKET_NAME= os.getenv("S3_STATIC_BUCKET_NAME")
 
 settings = Settings()
