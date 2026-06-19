@@ -1,0 +1,16 @@
+{
+  "version": "2.0",
+  "routeKey": "GET /report/status",
+  "rawPath": "/report/status",
+  "rawQueryString": "filekey=saeb-report-assets/input-files/planilha_alunos.xlsx",
+  "queryStringParameters": {
+    "filekey": "saeb-report-assets/input-files/planilha_alunos.xlsx"
+  },
+  "requestContext": {
+    "http": {
+      "method": "GET",
+      "path": "/report/status"
+    }
+  },
+  "isBase64Encoded": false
+}

@@ -11,7 +11,7 @@ Resources:
       Timeout: 30
       Environment:
         Variables:
-          DYNAMODB_ENDPOINT: http://host.docker.internal:8000
+          DYNAMODB_ENDPOINT: http://host.docker.internal:4566
           DYNAMO_QUESTIONS_TABLE: saeb_questions_local
           DYNAMO_INTERVENTIONS_TABLE: saeb_interventions_local
       Events:
