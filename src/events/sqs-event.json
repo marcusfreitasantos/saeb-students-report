@@ -1,0 +1,20 @@
+{
+  "Records": [
+    {
+      "messageId": "1f9b8c2e-1234-4a5b-9d3e-abcdef123456",
+      "receiptHandle": "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
+      "body": "{\"key\": \"input-files/planilha_alunos.xlsx\"}",
+      "attributes": {
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "1600000000000",
+        "SenderId": "000000000000",
+        "ApproximateFirstReceiveTimestamp": "1600000000001"
+      },
+      "messageAttributes": {},
+      "md5OfBody": "e4d909c290d0fb1ca068ffaddf22cbd0",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:sa-east-1:000000000000:saeb-report-jobs-local",
+      "awsRegion": "sa-east-1"
+    }
+  ]
+}

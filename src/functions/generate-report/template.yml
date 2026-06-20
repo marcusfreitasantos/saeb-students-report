@@ -17,13 +17,4 @@ Resources:
           DYNAMO_REPORTS_TABLE: saeb_reports_local
           S3_INPUT_BUCKET_NAME: saeb-report-assets
           S3_OUTPUT_BUCKET_NAME: saeb-student-reports
-      Events:
-        GetReportStatus:
-          Type: HttpApi
-          Properties:
-            Path: /report/status
-            Method: get
-            RequestParameters:
-              - method.request.querystring.filekey:
-                  Required: true
-                  Caching: true
+          SQS_QUEUE_URL: http://host.docker.internal:4566/000000000000/saeb-report-jobs-local

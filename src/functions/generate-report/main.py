@@ -1,14 +1,11 @@
 import json
 import logging
 from infrastructure.dynamodb_repository import DynamoDBClient
+from infrastructure.s3_repository import S3Client
+from services.event_controller import EventController
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-def is_s3_event(event):
-    records = event.get("Records", [])
-    return bool(records and records[0].get("eventSource") == "aws:s3")
-
 
 def response_body(data):
     if hasattr(data, "to_dict"):
@@ -17,24 +14,22 @@ def response_body(data):
     return data
 
 def handler(event, context):
-    try:        
+    try:
         logger.info(f"Received event: {json.dumps(event)}")
         db_client = DynamoDBClient()
-        event_controller = EventController(event_data=event, db_client=db_client)
+        s3_client = S3Client()
 
-        if is_s3_event(event):
-            result = event_controller.handle(event)
-        else:
-            raise ValueError("Unsupported event source")
+        event_controller = EventController(event=event, db_client=db_client, s3_client=s3_client)
+        result = event_controller.handle(event)
 
         logger.info(f"Generate report result: {json.dumps(response_body(result))}")
-        
+
         return {
             'statusCode': 200,
             'headers': {'Content-Type': 'application/json'},
             'body': json.dumps(response_body(result))
         }
-     
+
     except Exception as e:
         logger.error(f"Error with lambda event: {str(e)}")
         return {
@@ -42,7 +37,7 @@ def handler(event, context):
             'headers': {'Content-Type': 'application/json'},
             'body': json.dumps({'error': f'Internal server error: {str(e)}'})
         }
-    
+
 
 if __name__ == "__main__":
     handler()

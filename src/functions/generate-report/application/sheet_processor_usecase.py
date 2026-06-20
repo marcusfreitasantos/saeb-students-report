@@ -1,7 +1,7 @@
 import io
 from dataclasses import dataclass
 import pandas as pd
-from report_builder import StudentPerformance, Diagnosis
+from .report_builder import StudentPerformance, Diagnosis
 
 class SpreadsheetReportProcessor:
     def process(self, spreadsheet_data: bytes) -> Diagnosis:

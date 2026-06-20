@@ -58,3 +58,10 @@ create_table_if_not_exists saeb_reports_local \
   --billing-mode PAY_PER_REQUEST
 
 echo "DynamoDB tables created successfully!"
+
+# Create SQS queues
+echo "Creating SQS queues..."
+
+awslocal $AWS_REGION_OPTION sqs create-queue --queue-name saeb-report-jobs-local || true
+
+echo "SQS queues created successfully!"

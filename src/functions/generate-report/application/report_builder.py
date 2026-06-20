@@ -2,7 +2,7 @@ import io
 import random
 import re
 from dataclasses import dataclass
-from pdf_builder_usecase import SimplePdfBuilder
+from .pdf_builder_usecase import SimplePdfBuilder
 import matplotlib.pyplot as plt
 import pandas as pd
 from docx import Document
