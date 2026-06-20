@@ -54,7 +54,14 @@ class EventUseCase:
             error=str(error),
         )
 
-        self.repository.save(self.reports_table_name, error_event.to_dict())
+        try:
+            self.repository.save(self.reports_table_name, error_event.to_dict())
+            logger.info(f"Error event saved successfully for filekey: {filekey}")
+        except Exception as e:
+            logger.error(
+                f"Failed to save error event for filekey {filekey}: {e}",
+                exc_info=True,
+            )
         return error_event
     
 

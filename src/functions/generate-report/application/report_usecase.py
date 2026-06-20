@@ -8,6 +8,7 @@ from .sheet_processor_usecase import SpreadsheetReportProcessor
 from domain.entities.report import ReportResult
 from infrastructure.config.settings import settings
 from botocore.exceptions import ClientError
+from .event_usecase import EventUseCase
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -73,6 +74,14 @@ class ReportUseCase:
             logger.error(
                 f"Error occurred while generating report event: {e}.",
                 exc_info=True,
+            )
+
+            event_usecase = EventUseCase(self.repository)
+            event_usecase.save_error_event(
+                filekey=filekey,
+                createdAt=datetime.now().isoformat(),
+                downloadUrl=None,
+                error=e,
             )
 
             return ReportResult(

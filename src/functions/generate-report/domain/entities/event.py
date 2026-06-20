@@ -30,4 +30,4 @@ class Event:
     def to_dict(self):
         item = asdict(self)
         item["status"] = self.status.value
-        return item
+        return {key: value for key, value in item.items() if value is not None}
