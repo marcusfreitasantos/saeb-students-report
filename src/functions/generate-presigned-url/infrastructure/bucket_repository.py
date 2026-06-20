@@ -21,13 +21,13 @@ class S3Client:
         self.s3 = boto3.client(**s3_params)
 
 
-    def presigned_url(self, file_key: str):
+    def presigned_url(self, object_key: str):
         try:
             response = self.s3.generate_presigned_url(
                 'put_object',
                 Params={
                     'Bucket': settings.S3_ASSETS_BUCKET_NAME,
-                    'Key': file_key
+                    'Key': object_key
                 },
                 ExpiresIn=300,
                 HttpMethod='PUT'
@@ -36,11 +36,11 @@ class S3Client:
             logger.error(
                 f"Error occurred while generating presigned URL: {e}.",
                 exc_info=True,
-                extra={"bucket_name": settings.BUCKET_NAME, "file_key": file_key}
+                extra={"bucket_name": settings.BUCKET_NAME, "object_key": object_key}
             )
             raise
 
         return {
             "upload_url": response,
-            "file_key": file_key
+            "object_key": object_key
         }

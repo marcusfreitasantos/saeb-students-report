@@ -1,5 +1,4 @@
 import io
-from dataclasses import dataclass
 import pandas as pd
 from .report_builder import StudentPerformance, Diagnosis
 

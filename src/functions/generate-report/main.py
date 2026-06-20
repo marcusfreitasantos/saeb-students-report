@@ -1,7 +1,7 @@
 import json
 import logging
 from infrastructure.dynamodb_repository import DynamoDBClient
-from infrastructure.s3_repository import S3Client
+from infrastructure.bucket_repository import S3Client
 from services.event_controller import EventController
 
 logger = logging.getLogger(__name__)
