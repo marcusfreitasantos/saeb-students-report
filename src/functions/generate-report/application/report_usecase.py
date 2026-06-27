@@ -28,38 +28,38 @@ class ReportUseCase:
     def build(self, filekey: str) -> ReportResult:
         try:
             spreadsheet_data = self.storage.get_file(self.input_bucket_name, filekey)
-            # diagnosis = self.processor.process(spreadsheet_data)
-            # descriptors = diagnosis.critical_descriptors
-            # questions = self._group_by_descriptor(
-            #     self.repository.list_by_descriptors(
-            #         self.questions_table_name,
-            #         descriptors,
-            #     )
-            # )
-            # interventions = self._group_by_descriptor(
-            #     self.repository.list_by_descriptors(
-            #         self.interventions_table_name,
-            #         descriptors,
-            #     )
-            # )
-            # artifacts = self.report_builder.build(diagnosis, questions, interventions)
-            # base_key = self._report_base_key(filekey)
+            diagnosis = self.processor.process(spreadsheet_data)
+            descriptors = diagnosis.critical_descriptors
+            questions = self._group_by_descriptor(
+                self.repository.list_by_descriptors(
+                    self.questions_table_name,
+                    descriptors,
+                )
+            )
+            interventions = self._group_by_descriptor(
+                self.repository.list_by_descriptors(
+                    self.interventions_table_name,
+                    descriptors,
+                )
+            )
+            artifacts = self.report_builder.build(diagnosis, questions, interventions)
+            base_key = self._report_base_key(filekey)
 
-            # docx_key = f"{base_key}/relatorio-saeb.docx"
-            # pdf_key = f"{base_key}/relatorio-saeb.pdf"
+            docx_key = f"{base_key}/relatorio-saeb.docx"
+            pdf_key = f"{base_key}/relatorio-saeb.pdf"
 
-            # self.storage.put_file(
-            #     self.output_bucket_name,
-            #     docx_key,
-            #     artifacts.docx,
-            #     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            # )
-            # self.storage.put_file(
-            #     self.output_bucket_name,
-            #     pdf_key,
-            #     artifacts.pdf,
-            #     "application/pdf",
-            # )
+            self.storage.put_file(
+                self.output_bucket_name,
+                docx_key,
+                artifacts.docx,
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            )
+            self.storage.put_file(
+                self.output_bucket_name,
+                pdf_key,
+                artifacts.pdf,
+                "application/pdf",
+            )
 
             event_usecase = EventUseCase(self.repository)
             event_usecase.build(
