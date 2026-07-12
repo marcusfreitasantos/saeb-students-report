@@ -29,3 +29,13 @@ class SQSClient:
                 exc_info=True,
             )
             raise error
+        
+    def delete_message(self, queue_url: str, receipt_handle: str) -> None:
+        try:
+            self.sqs.delete_message(QueueUrl=queue_url, ReceiptHandle=receipt_handle)
+        except ClientError as error:
+            logger.error(
+                f"Error occurred while deleting message from SQS: {error}. Queue URL: {queue_url}, Receipt Handle: {receipt_handle}",
+                exc_info=True,
+            )
+            raise error

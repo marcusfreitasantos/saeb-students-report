@@ -15,8 +15,8 @@ class EventUseCase:
     sqs_queue_name = settings.SQS_QUEUE_NAME
     operation_name = "GenerateReportEvent"
 
-    def __init__(self, s3_repository, sqs_repository):
-        self.s3_repository = s3_repository
+    def __init__(self, db_repository, sqs_repository):
+        self.db_repository = db_repository
         self.sqs_repository = sqs_repository
 
 
@@ -47,6 +47,7 @@ class EventUseCase:
         createdAt: str,
         downloadUrl: str | None,
         error: ClientError,
+        receipt_handle: str = None
     ) -> Event:
         error_event = Event(
             id=str(uuid.uuid4()),
@@ -58,8 +59,11 @@ class EventUseCase:
         )
 
         try:
-            self.s3_repository.save(self.reports_table_name, error_event.to_dict())
+            self.db_repository.save(self.reports_table_name, error_event.to_dict())
             logger.info(f"Error event saved successfully for filekey: {filekey}")
+            if receipt_handle:
+                self.sqs_repository.delete_message(self.sqs_queue_url, receipt_handle)
+
         except Exception as e:
             logger.error(
                 f"Failed to save error event for filekey {filekey}: {e}",
@@ -68,7 +72,7 @@ class EventUseCase:
         return error_event
     
 
-    def build(self, filekey: str, status: str, createdAt: str, downloadUrl: str = None) -> Event:
+    def build(self, filekey: str, status: str, createdAt: str, downloadUrl: str = None, receipt_handle: str = None) -> Event:
         try:
             try:
                 new_event = Event(
@@ -79,11 +83,15 @@ class EventUseCase:
                     createdAt=createdAt,
                 )
 
-                self.s3_repository.save(self.reports_table_name, new_event.to_dict())
+                self.db_repository.save(self.reports_table_name, new_event.to_dict())
 
                 # send SQS message
-                sqs_msg_body = f"{{'key': '{new_event.to_dict()['filekey']}'}}"
-                self.sqs_repository.send_message(self.sqs_queue_url, sqs_msg_body)
+                if status == "STARTED":
+                    sqs_msg_body = f"{{'key': '{new_event.to_dict()['filekey']}'}}"
+                    self.sqs_repository.send_message(self.sqs_queue_url, sqs_msg_body)
+                else:
+                    self.sqs_repository.delete_message(self.sqs_queue_url, receipt_handle)
+
                 return new_event
             except Exception as e:
                 raise self.to_client_error(e) from e
@@ -99,4 +107,4 @@ class EventUseCase:
 
 
     def get_item(self, filekey: str): 
-        return self.s3_repository.get(self.reports_table_name, filekey)
+        return self.db_repository.get(self.reports_table_name, filekey)

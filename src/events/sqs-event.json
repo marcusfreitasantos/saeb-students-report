@@ -2,7 +2,7 @@
   "Records": [
     {
       "messageId": "1f9b8c2e-1234-4a5b-9d3e-abcdef123456",
-      "receiptHandle": "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
+      "receiptHandle": "SQS/BACKDOOR/ACCESS",
       "body": "{\"key\": \"input-files/planilha_alunos.xlsx\"}",
       "attributes": {
         "ApproximateReceiveCount": "1",

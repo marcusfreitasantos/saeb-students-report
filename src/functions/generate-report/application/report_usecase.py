@@ -19,25 +19,26 @@ class ReportUseCase:
     output_bucket_name = settings.S3_OUTPUT_BUCKET_NAME
     input_bucket_name = settings.S3_INPUT_BUCKET_NAME
 
-    def __init__(self, repository, storage):
-        self.repository = repository
-        self.storage = storage
+    def __init__(self, db_repository, s3_repository, sqs_repository):
+        self.db_repository = db_repository
+        self.s3_repository = s3_repository
+        self.sqs_repository = sqs_repository
         self.processor = SpreadsheetReportProcessor()
         self.report_builder = ReportBuilder()
     
-    def build(self, filekey: str) -> ReportResult:
+    def build(self, filekey: str, receipt_handle: str = None) -> ReportResult:
         try:
-            spreadsheet_data = self.storage.get_file(self.input_bucket_name, filekey)
+            spreadsheet_data = self.s3_repository.get_file(self.input_bucket_name, filekey)
             diagnosis = self.processor.process(spreadsheet_data)
             descriptors = diagnosis.critical_descriptors
             questions = self._group_by_descriptor(
-                self.repository.list_by_descriptors(
+                self.db_repository.list_by_descriptors(
                     self.questions_table_name,
                     descriptors,
                 )
             )
             interventions = self._group_by_descriptor(
-                self.repository.list_by_descriptors(
+                self.db_repository.list_by_descriptors(
                     self.interventions_table_name,
                     descriptors,
                 )
@@ -48,32 +49,33 @@ class ReportUseCase:
             docx_key = f"{base_key}/relatorio-saeb.docx"
             pdf_key = f"{base_key}/relatorio-saeb.pdf"
 
-            self.storage.put_file(
+            self.s3_repository.put_file(
                 self.output_bucket_name,
                 docx_key,
                 artifacts.docx,
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             )
-            self.storage.put_file(
+            self.s3_repository.put_file(
                 self.output_bucket_name,
                 pdf_key,
                 artifacts.pdf,
                 "application/pdf",
             )
 
-            event_usecase = EventUseCase(self.repository)
+            event_usecase = EventUseCase(self.db_repository, self.sqs_repository)
             event_usecase.build(
                 filekey,
                 "COMPLETED",
                 datetime.now().isoformat(),
-                "https://example.com/download/report.pdf",
+                self.s3_repository.download_url(self.output_bucket_name, pdf_key),
+                receipt_handle=receipt_handle
             )
 
             return ReportResult(
                 success=True,
                 message="Relatorio gerado com sucesso.",
-                #pdf_download_url=self.storage.download_url(self.output_bucket_name, pdf_key),
-                #docx_download_url=self.storage.download_url(self.output_bucket_name, docx_key),
+                pdf_download_url=self.s3_repository.download_url(self.output_bucket_name, pdf_key),
+                docx_download_url=self.s3_repository.download_url(self.output_bucket_name, docx_key),
             )
 
         
@@ -83,12 +85,13 @@ class ReportUseCase:
                 exc_info=True,
             )
 
-            event_usecase = EventUseCase(self.repository)
+            event_usecase = EventUseCase(self.db_repository, self.sqs_repository)
             event_usecase.save_error_event(
                 filekey=filekey,
                 createdAt=datetime.now().isoformat(),
                 downloadUrl=None,
                 error=e,
+                receipt_handle=receipt_handle
             )
 
             return ReportResult(
