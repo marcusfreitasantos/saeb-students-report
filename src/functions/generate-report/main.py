@@ -2,6 +2,7 @@ import json
 import logging
 from infrastructure.dynamodb_repository import DynamoDBClient
 from infrastructure.bucket_repository import S3Client
+from infrastructure.sqs_repository import SQSClient
 from services.event_controller import EventController
 
 logger = logging.getLogger(__name__)
@@ -18,8 +19,9 @@ def handler(event, context):
         logger.info(f"Received event: {json.dumps(event)}")
         db_client = DynamoDBClient()
         s3_client = S3Client()
+        sqs_client = SQSClient()
 
-        event_controller = EventController(event=event, db_client=db_client, s3_client=s3_client)
+        event_controller = EventController(event=event, db_client=db_client, s3_client=s3_client, sqs_client=sqs_client)
         result = event_controller.handle(event)
 
         logger.info(f"Generate report result: {json.dumps(response_body(result))}")

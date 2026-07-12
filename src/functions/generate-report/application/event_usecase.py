@@ -11,10 +11,13 @@ logger.setLevel(logging.INFO)
 class EventUseCase:
 
     reports_table_name = settings.DYNAMO_REPORTS_TABLE
+    sqs_queue_url = settings.SQS_QUEUE_URL
+    sqs_queue_name = settings.SQS_QUEUE_NAME
     operation_name = "GenerateReportEvent"
 
-    def __init__(self, repository):
-        self.repository = repository
+    def __init__(self, s3_repository, sqs_repository):
+        self.s3_repository = s3_repository
+        self.sqs_repository = sqs_repository
 
 
     def status_map(self, status: str):
@@ -55,7 +58,7 @@ class EventUseCase:
         )
 
         try:
-            self.repository.save(self.reports_table_name, error_event.to_dict())
+            self.s3_repository.save(self.reports_table_name, error_event.to_dict())
             logger.info(f"Error event saved successfully for filekey: {filekey}")
         except Exception as e:
             logger.error(
@@ -76,7 +79,11 @@ class EventUseCase:
                     createdAt=createdAt,
                 )
 
-                self.repository.save(self.reports_table_name, new_event.to_dict())
+                self.s3_repository.save(self.reports_table_name, new_event.to_dict())
+
+                # send SQS message
+                sqs_msg_body = f"{{'key': '{new_event.to_dict()['filekey']}'}}"
+                self.sqs_repository.send_message(self.sqs_queue_url, sqs_msg_body)
                 return new_event
             except Exception as e:
                 raise self.to_client_error(e) from e
@@ -92,4 +99,4 @@ class EventUseCase:
 
 
     def get_item(self, filekey: str): 
-        return self.repository.get(self.reports_table_name, filekey)
+        return self.s3_repository.get(self.reports_table_name, filekey)

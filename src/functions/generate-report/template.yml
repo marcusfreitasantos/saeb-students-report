@@ -13,6 +13,8 @@ Resources:
         Variables:
           DYNAMODB_ENDPOINT: http://host.docker.internal:4566
           BUCKET_ENDPOINT: http://host.docker.internal:4566
+          SQS_ENDPOINT: http://host.docker.internal:4566
+          SQS_QUEUE_NAME: saeb-report-jobs-local
           DYNAMO_QUESTIONS_TABLE: saeb_questions_local
           DYNAMO_INTERVENTIONS_TABLE: saeb_interventions_local
           DYNAMO_REPORTS_TABLE: saeb_reports_local

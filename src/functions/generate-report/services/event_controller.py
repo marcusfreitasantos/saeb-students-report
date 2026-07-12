@@ -4,10 +4,11 @@ import json
 from datetime import datetime
 
 class EventController:
-    def __init__(self, event, db_client=None, s3_client=None):
+    def __init__(self, event, db_client=None, s3_client=None, sqs_client=None):
         self.event = event
         self.db_client = db_client
         self.s3_client = s3_client
+        self.sqs_client = sqs_client
 
 
     def handle(self, event):
@@ -36,7 +37,7 @@ class EventController:
         
         # CASE S3 EVENT
         if bool(records and records[0].get("eventSource") == "aws:s3"):
-            event_usecase = EventUseCase(self.db_client)
+            event_usecase = EventUseCase(self.db_client, self.sqs_client)
             now = datetime.now()
             fileKey = f"{self.event['Records'][0]['s3']['bucket']['name']}/{self.event['Records'][0]['s3']['object']['key']}"
 

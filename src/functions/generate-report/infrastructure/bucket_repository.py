@@ -1,5 +1,4 @@
 import logging
-from urllib.parse import quote
 import boto3
 from botocore.client import Config
 from botocore.exceptions import ClientError
@@ -13,7 +12,7 @@ class S3Client:
     def __init__(self):
         s3_params = {
             "service_name": "s3",
-            "region_name": settings.AWS_REGION,
+            "region_name": "sa-east-1",
             "config": Config(signature_version='s3v4')
         }
 

@@ -37,6 +37,9 @@ class Settings:
     AWS_REGION = os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "sa-east-1"
     DYNAMODB_ENDPOINT = normalize_localstack_endpoint(os.getenv("DYNAMODB_ENDPOINT"))
     BUCKET_ENDPOINT = normalize_localstack_endpoint(os.getenv("BUCKET_ENDPOINT"))
+    SQS_ENDPOINT = normalize_localstack_endpoint(os.getenv("SQS_ENDPOINT"))
+    SQS_QUEUE_URL = normalize_localstack_endpoint(os.getenv("SQS_QUEUE_URL"))
+    SQS_QUEUE_NAME = os.getenv("SQS_QUEUE_NAME")
     DYNAMO_QUESTIONS_TABLE= os.getenv("DYNAMO_QUESTIONS_TABLE")
     DYNAMO_INTERVENTIONS_TABLE= os.getenv("DYNAMO_INTERVENTIONS_TABLE")
     DYNAMO_REPORTS_TABLE= os.getenv("DYNAMO_REPORTS_TABLE")
