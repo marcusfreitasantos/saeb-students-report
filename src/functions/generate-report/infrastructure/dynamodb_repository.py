@@ -52,11 +52,9 @@ class DynamoDBClient:
                 IndexName=self.filekey_index_name,
                 KeyConditionExpression=Key("filekey").eq(filekey),
                 ScanIndexForward=False,
-                Limit=1,
+                Limit=10,
             )
-            items = response.get("Items", [])
-
-            return next(iter(items), None)
+            return response.get("Items", [])
         
         except ClientError as e:
             logger.error(
@@ -66,49 +64,6 @@ class DynamoDBClient:
                     "table_name": table_name,
                     "filekey": filekey,
                     "gsi_name": self.filekey_index_name,
-                }
-            )
-            raise
-
-    def list_by_descriptors(self, table_name: str, descriptors: list[str]):
-        try:
-            if not descriptors:
-                return []
-
-            table = self.dynamodb.Table(table_name)
-            descriptor_values = {str(descriptor).upper() for descriptor in descriptors}
-            filter_expression = None
-
-            for descriptor in descriptor_values:
-                expression = Attr("descriptor").eq(descriptor)
-                filter_expression = (
-                    expression
-                    if filter_expression is None
-                    else filter_expression | expression
-                )
-
-            items = []
-            scan_params = {"FilterExpression": filter_expression}
-
-            while True:
-                response = table.scan(**scan_params)
-                items.extend(response.get("Items", []))
-
-                last_key = response.get("LastEvaluatedKey")
-                if not last_key:
-                    break
-
-                scan_params["ExclusiveStartKey"] = last_key
-
-            return items
-        
-        except ClientError as e:
-            logger.error(
-                f"Error occurred while listing items from table: {e}.",
-                exc_info=True,
-                extra={
-                    "table_name": table_name,
-                    "descriptors": descriptors,
                 }
             )
             raise

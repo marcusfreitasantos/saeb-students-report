@@ -50,19 +50,13 @@ class EventController:
         
         # CASE HTTP GET EVENT
         if event.get("requestContext", {}).get("http", {}).get("method") == "GET":
-            params = event.get("queryStringParameters") or {}
-            filekey = params.get("filekey")
+            filekey = event.get("pathParameters", {}).get("key") or {}
 
             if not filekey:
                 raise ValueError("Missing required query parameter: filekey")
             
-            return filekey
+            events = EventUseCase(self.db_client, self.sqs_client)
+            return events.get_item(filekey)
 
         else:
             raise ValueError("Unsupported event source")
-        
-
-    
-    def get_item(self, filekey: str):
-        events = EventUseCase(self.db_client)       
-        return events.get_item(filekey)
