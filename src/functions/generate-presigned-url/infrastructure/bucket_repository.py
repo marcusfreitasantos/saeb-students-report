@@ -26,7 +26,7 @@ class S3Client:
             response = self.s3.generate_presigned_url(
                 'put_object',
                 Params={
-                    'Bucket': settings.S3_ASSETS_BUCKET_NAME,
+                    'Bucket': settings.S3_INPUT_BUCKET_NAME,
                     'Key': object_key
                 },
                 ExpiresIn=300,

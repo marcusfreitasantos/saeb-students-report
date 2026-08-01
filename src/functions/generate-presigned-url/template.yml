@@ -12,7 +12,7 @@ Resources:
       Environment:
         Variables:
           BUCKET_ENDPOINT: https://localhost.localstack.cloud:4566
-          S3_ASSETS_BUCKET_NAME: saeb-report-assets
+          S3_INPUT_BUCKET_NAME: saeb-report-assets
       Events:
         SaveInputFile:
           Type: HttpApi

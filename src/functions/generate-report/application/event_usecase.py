@@ -1,4 +1,5 @@
 import uuid
+import json
 from domain.entities.event import Event
 from domain.entities.event import StatusType
 from infrastructure.config.settings import settings
@@ -87,7 +88,7 @@ class EventUseCase:
 
                 # send SQS message
                 if status == "STARTED":
-                    sqs_msg_body = f"{{'key': '{new_event.to_dict()['filekey']}'}}"
+                    sqs_msg_body = json.dumps({"key": new_event.to_dict()["filekey"]})
                     self.sqs_repository.send_message(self.sqs_queue_url, sqs_msg_body)
                 else:
                     self.sqs_repository.delete_message(self.sqs_queue_url, receipt_handle)

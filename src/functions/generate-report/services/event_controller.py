@@ -50,7 +50,8 @@ class EventController:
         
         # CASE HTTP GET EVENT
         if event.get("requestContext", {}).get("http", {}).get("method") == "GET":
-            filekey = event.get("pathParameters", {}).get("key") or {}
+            params = event.get("queryStringParameters") or {}
+            filekey = params.get("filekey")
 
             if not filekey:
                 raise ValueError("Missing required query parameter: filekey")
