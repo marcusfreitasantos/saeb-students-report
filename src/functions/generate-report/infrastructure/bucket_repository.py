@@ -29,7 +29,7 @@ class S3Client:
             logger.error(
                 "Error occurred while getting object from S3.",
                 exc_info=True,
-                extra={"bucket_name": bucket_name, "object_key": object_key},
+                extra={"bucket_name": bucket_name, "file_key": object_key},
             )
             raise error
 
@@ -51,7 +51,7 @@ class S3Client:
             logger.error(
                 "Error occurred while putting object into S3.",
                 exc_info=True,
-                extra={"bucket_name": bucket_name, "object_key": object_key},
+                extra={"bucket_name": bucket_name, "file_key": object_key},
             )
             raise error
 

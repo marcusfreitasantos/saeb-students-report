@@ -23,6 +23,9 @@ class S3Client:
 
     def presigned_url(self, object_key: str):
         try:
+            if not settings.S3_INPUT_BUCKET_NAME:
+                raise ValueError("Missing required environment variable: S3_INPUT_BUCKET_NAME")
+
             response = self.s3.generate_presigned_url(
                 'put_object',
                 Params={
@@ -36,11 +39,11 @@ class S3Client:
             logger.error(
                 f"Error occurred while generating presigned URL: {e}.",
                 exc_info=True,
-                extra={"bucket_name": settings.BUCKET_NAME, "object_key": object_key}
+                extra={"bucket_name": settings.S3_INPUT_BUCKET_NAME, "file_key": object_key}
             )
             raise
 
         return {
             "upload_url": response,
-            "object_key": object_key
+            "file_key": object_key
         }
