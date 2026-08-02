@@ -39,7 +39,7 @@ class EventController:
         if bool(records and records[0].get("eventSource") == "aws:s3"):
             event_usecase = EventUseCase(self.db_client, self.sqs_client)
             now = datetime.now()
-            fileKey = f"{self.event['Records'][0]['s3']['bucket']['name']}/{self.event['Records'][0]['s3']['object']['key']}"
+            fileKey = f"{self.event['Records'][0]['s3']['object']['key']}"
 
             return event_usecase.build(
                 fileKey,
