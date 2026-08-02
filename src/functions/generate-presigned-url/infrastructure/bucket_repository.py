@@ -45,5 +45,5 @@ class S3Client:
 
         return {
             "upload_url": response,
-            "file_key": object_key
+            "file_key": object_key,
         }

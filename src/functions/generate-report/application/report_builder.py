@@ -2,7 +2,7 @@ import io
 import random
 import re
 from dataclasses import dataclass
-from .pdf_builder_usecase import SimplePdfBuilder
+from .pdf_builder_usecase import ReportPdfBuilder
 import matplotlib.pyplot as plt
 import pandas as pd
 from docx import Document
@@ -43,8 +43,19 @@ class ReportBuilder:
         interventions: dict[str, list[dict]],
     ) -> ReportArtifacts:
         chart = self._build_priority_chart(diagnosis)
-        docx_bytes = self._build_docx(diagnosis, questions, interventions, chart)
-        pdf_bytes = self._build_pdf(diagnosis, questions, interventions)
+        selected_questions = self._select_questions(diagnosis.critical_descriptors, questions)
+        docx_bytes = self._build_docx(
+            diagnosis,
+            selected_questions,
+            interventions,
+            chart,
+        )
+        pdf_bytes = self._build_pdf(
+            diagnosis,
+            selected_questions,
+            interventions,
+            chart,
+        )
 
         return ReportArtifacts(docx=docx_bytes, pdf=pdf_bytes)
 
@@ -65,7 +76,7 @@ class ReportBuilder:
     def _build_docx(
         self,
         diagnosis: Diagnosis,
-        questions: dict[str, list[dict]],
+        selected_questions: dict[str, dict | None],
         interventions: dict[str, list[dict]],
         chart: bytes,
     ) -> bytes:
@@ -94,7 +105,7 @@ class ReportBuilder:
             row_cells[1].text = student.name
             row_cells[2].text = f"{student.average}%"
 
-        self._add_questions(document, diagnosis.critical_descriptors, questions)
+        self._add_questions(document, diagnosis.critical_descriptors, selected_questions)
         self._add_interventions(document, diagnosis.critical_descriptors, interventions)
 
         output = io.BytesIO()
@@ -105,19 +116,18 @@ class ReportBuilder:
         self,
         document: Document,
         descriptors: list[str],
-        questions: dict[str, list[dict]],
+        selected_questions: dict[str, dict | None],
     ) -> None:
         document.add_page_break()
         document.add_heading("3. Simulado de Reforco", 1)
 
         question_number = 1
         for descriptor in descriptors:
-            descriptor_questions = questions.get(descriptor.upper(), [])
-            if not descriptor_questions:
+            question = selected_questions.get(descriptor.upper())
+            if not question:
                 document.add_paragraph(f"Nenhuma questao cadastrada para o descritor {descriptor}.")
                 continue
 
-            question = random.choice(descriptor_questions)
             paragraph = document.add_paragraph()
             paragraph.add_run(f"Questao {question_number} (Descritor {descriptor}): ").bold = True
             paragraph.add_run(self._strip_image_tags(question.get("description", "")))
@@ -160,29 +170,31 @@ class ReportBuilder:
     def _build_pdf(
         self,
         diagnosis: Diagnosis,
-        questions: dict[str, list[dict]],
+        selected_questions: dict[str, dict | None],
         interventions: dict[str, list[dict]],
+        chart: bytes,
     ) -> bytes:
-        lines = ["RELATORIO PEDAGOGICO SAEB", "", "Desempenho por Estudante"]
-        for student in sorted(diagnosis.students, key=lambda item: item.average, reverse=True):
-            lines.append(f"{student.status} - {student.name}: {student.average}%")
+        return ReportPdfBuilder().build(
+            diagnosis,
+            diagnosis.critical_descriptors,
+            selected_questions,
+            interventions,
+            chart,
+            self._strip_image_tags,
+        )
 
-        lines.extend(["", "Descritores Criticos"])
-        for descriptor in diagnosis.critical_descriptors:
-            lines.append(f"Descritor {descriptor}")
-            question = next(iter(questions.get(descriptor.upper(), [])), None)
-            if question:
-                lines.append(self._strip_image_tags(question.get("description", ""))[:180])
-
-            descriptor_interventions = interventions.get(descriptor.upper(), [])
-            if descriptor_interventions:
-                first_detail = next(
-                    iter(descriptor_interventions[0].get("intervention_data", [])), {}
-                )
-                if first_detail:
-                    lines.append(f"Intervencao: {first_detail.get('title', 'Sem titulo')}")
-
-        return SimplePdfBuilder().build(lines)
+    def _select_questions(
+        self,
+        descriptors: list[str],
+        questions: dict[str, list[dict]],
+    ) -> dict[str, dict | None]:
+        selected_questions = {}
+        for descriptor in descriptors:
+            descriptor_questions = questions.get(descriptor.upper(), [])
+            selected_questions[descriptor.upper()] = (
+                random.choice(descriptor_questions) if descriptor_questions else None
+            )
+        return selected_questions
 
     def _strip_image_tags(self, value: str) -> str:
         return re.sub(r"\[(.*?)\]", "", str(value)).strip()
