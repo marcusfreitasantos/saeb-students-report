@@ -48,7 +48,6 @@ class EventUseCase:
         createdAt: str,
         downloadUrl: str | None,
         error: ClientError,
-        receipt_handle: str = None
     ) -> Event:
         error_event = Event(
             id=str(uuid.uuid4()),
@@ -62,8 +61,6 @@ class EventUseCase:
         try:
             self.db_repository.save(self.reports_table_name, error_event.to_dict())
             logger.info(f"Error event saved successfully for filekey: {filekey}")
-            if receipt_handle:
-                self.sqs_repository.delete_message(self.sqs_queue_url, receipt_handle)
 
         except Exception as e:
             logger.error(
@@ -73,7 +70,7 @@ class EventUseCase:
         return error_event
     
 
-    def build(self, filekey: str, status: str, createdAt: str, downloadUrl: str = None, receipt_handle: str = None) -> Event:
+    def build(self, filekey: str, status: str, createdAt: str, downloadUrl: str = None) -> Event:
         try:
             try:
                 new_event = Event(
@@ -90,8 +87,6 @@ class EventUseCase:
                 if status == "STARTED":
                     sqs_msg_body = json.dumps({"key": new_event.to_dict()["filekey"]})
                     self.sqs_repository.send_message(self.sqs_queue_url, sqs_msg_body)
-                else:
-                    self.sqs_repository.delete_message(self.sqs_queue_url, receipt_handle)
 
                 return new_event
             except Exception as e:

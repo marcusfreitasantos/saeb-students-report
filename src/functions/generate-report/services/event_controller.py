@@ -33,7 +33,7 @@ class EventController:
                 raise ValueError("SQS message body must contain 'key'")
             
             report_usecase = ReportUseCase(self.db_client, self.s3_client, self.sqs_client)
-            return report_usecase.build(key, records[0].get("receiptHandle"))
+            return report_usecase.build(key)
         
         # CASE S3 EVENT
         if bool(records and records[0].get("eventSource") == "aws:s3"):

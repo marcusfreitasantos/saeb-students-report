@@ -72,11 +72,11 @@ class ReportPdfBuilder:
                 Paragraph(
                     f"<b>Questao {question_number} (Descritor {descriptor}):</b> "
                     f"{self._escape(strip_image_tags(question.get('description', '')))}",
-                    styles["Body"],
+                    styles["ReportBody"],
                 )
             ]
             for option in question.get("options", []):
-                question_items.append(Paragraph(f"- {self._escape(str(option))}", styles["Bullet"]))
+                question_items.append(Paragraph(f"- {self._escape(str(option))}", styles["ReportBullet"]))
 
             story.append(KeepTogether(question_items + [Spacer(1, 0.15 * inch)]))
             question_number += 1
@@ -94,7 +94,7 @@ class ReportPdfBuilder:
                 story.append(
                     Paragraph(
                         f"<i>Sugestao de robotica nao cadastrada para o descritor {descriptor}.</i>",
-                        styles["Body"],
+                        styles["ReportBody"],
                     )
                 )
                 continue
@@ -105,7 +105,7 @@ class ReportPdfBuilder:
                     story.append(
                         Paragraph(
                             f"Habilidade: {self._escape(str(intervention.get('skill')))}",
-                            styles["Body"],
+                            styles["ReportBody"],
                         )
                     )
 
@@ -115,9 +115,9 @@ class ReportPdfBuilder:
                     integration = self._escape(str(detail.get("integration", "N/A")))
                     story.extend(
                         [
-                            Paragraph(f"<b>{title}</b>", styles["Body"]),
-                            Paragraph(f"Desafio: {challenge}", styles["Body"]),
-                            Paragraph(f"IA: {integration}", styles["Body"]),
+                            Paragraph(f"<b>{title}</b>", styles["ReportBody"]),
+                            Paragraph(f"Desafio: {challenge}", styles["ReportBody"]),
+                            Paragraph(f"IA: {integration}", styles["ReportBody"]),
                             Spacer(1, 0.12 * inch),
                         ]
                     )
@@ -145,7 +145,7 @@ class ReportPdfBuilder:
 
         sample.add(
             ParagraphStyle(
-                name="Body",
+                name="ReportBody",
                 parent=sample["BodyText"],
                 fontName="Helvetica",
                 fontSize=10,
@@ -155,8 +155,8 @@ class ReportPdfBuilder:
         )
         sample.add(
             ParagraphStyle(
-                name="Bullet",
-                parent=sample["Body"],
+                name="ReportBullet",
+                parent=sample["ReportBody"],
                 leftIndent=14,
                 firstLineIndent=-8,
                 spaceAfter=3,

@@ -26,7 +26,7 @@ class ReportUseCase:
         self.processor = SpreadsheetReportProcessor()
         self.report_builder = ReportBuilder()
     
-    def build(self, filekey: str, receipt_handle: str = None) -> ReportResult:
+    def build(self, filekey: str) -> ReportResult:
         try:
             spreadsheet_data = self.s3_repository.get_file(self.input_bucket_name, filekey)
             diagnosis = self.processor.process(spreadsheet_data)
@@ -68,7 +68,6 @@ class ReportUseCase:
                 "COMPLETED",
                 datetime.now().isoformat(),
                 self.s3_repository.download_url(self.output_bucket_name, pdf_key),
-                receipt_handle=receipt_handle
             )
 
             return ReportResult(
@@ -91,7 +90,6 @@ class ReportUseCase:
                 createdAt=datetime.now().isoformat(),
                 downloadUrl=None,
                 error=e,
-                receipt_handle=receipt_handle
             )
 
             return ReportResult(
