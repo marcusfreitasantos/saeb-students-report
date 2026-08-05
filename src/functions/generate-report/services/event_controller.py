@@ -1,7 +1,9 @@
 from application.event_usecase import EventUseCase
 from application.report_usecase import ReportUseCase
 import json
+import re
 from datetime import datetime
+from infrastructure.config.settings import settings
 
 class EventController:
     def __init__(self, event, db_client=None, s3_client=None, sqs_client=None):
@@ -45,7 +47,6 @@ class EventController:
                 fileKey,
                 "STARTED",
                 now.isoformat(),
-                None,
             )
         
         # CASE HTTP GET EVENT
@@ -57,7 +58,45 @@ class EventController:
                 raise ValueError("Missing required query parameter: filekey")
             
             events = EventUseCase(self.db_client, self.sqs_client)
-            return events.get_item(filekey)
+            items = events.get_item(filekey)
+
+            # For completed events, resolve download URLs on demand by listing S3
+            try:
+                key_without_bucket = filekey.split("/", 1)[1] if "/" in filekey else filekey
+                safe_key = re.sub(r"[^a-zA-Z0-9/_-]+", "-", key_without_bucket).strip("-/")
+                prefix = f"reports/{safe_key}/"
+                bucket = settings.S3_OUTPUT_BUCKET_NAME
+
+                s3_list = None
+                try:
+                    s3_list = self.s3_client.s3.list_objects_v2(Bucket=bucket, Prefix=prefix)
+                except Exception:
+                    s3_list = {"KeyCount": 0}
+
+                available_keys = set()
+                for content in s3_list.get("Contents", []) if s3_list.get("KeyCount", 0) else []:
+                    available_keys.add(content.get("Key"))
+
+                for item in items:
+                    if str(item.get("status", "")).upper() == "COMPLETED":
+                        # find pdf/docx keys under the prefix
+                        pdf_key = next((k for k in available_keys if k.endswith("relatorio-saeb.pdf")), None)
+                        docx_key = next((k for k in available_keys if k.endswith("relatorio-saeb.docx")), None)
+
+                        download_urls = {}
+                        if pdf_key:
+                            download_urls["pdf"] = self.s3_client.download_url(bucket, pdf_key)
+                        if docx_key:
+                            download_urls["docx"] = self.s3_client.download_url(bucket, docx_key)
+
+                        if download_urls:
+                            item["downloadUrl"] = download_urls
+
+            except Exception:
+                # don't break status response if URL resolution fails
+                pass
+
+            return items
 
         else:
             raise ValueError("Unsupported event source")

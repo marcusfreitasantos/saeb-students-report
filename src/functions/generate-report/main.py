@@ -16,15 +16,12 @@ def response_body(data):
 
 def handler(event, context):
     try:
-        logger.info(f"Received event: {json.dumps(event)}")
         db_client = DynamoDBClient()
         s3_client = S3Client()
         sqs_client = SQSClient()
 
         event_controller = EventController(event=event, db_client=db_client, s3_client=s3_client, sqs_client=sqs_client)
         result = event_controller.handle(event)
-
-        logger.info(f"Generate report result: {json.dumps(response_body(result))}")
 
         return {
             'statusCode': 200,

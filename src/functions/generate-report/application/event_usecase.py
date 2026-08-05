@@ -46,21 +46,18 @@ class EventUseCase:
         self,
         filekey: str,
         createdAt: str,
-        downloadUrl: str | None,
         error: ClientError,
     ) -> Event:
         error_event = Event(
             id=str(uuid.uuid4()),
             filekey=filekey,
             status=StatusType.CANCELLED,
-            downloadUrl=downloadUrl,
             createdAt=createdAt,
             error=str(error),
         )
 
         try:
             self.db_repository.save(self.reports_table_name, error_event.to_dict())
-            logger.info(f"Error event saved successfully for filekey: {filekey}")
 
         except Exception as e:
             logger.error(
@@ -70,14 +67,13 @@ class EventUseCase:
         return error_event
     
 
-    def build(self, filekey: str, status: str, createdAt: str, downloadUrl: str = None) -> Event:
+    def build(self, filekey: str, status: str, createdAt: str) -> Event:
         try:
             try:
                 new_event = Event(
                     id=str(uuid.uuid4()),
                     filekey=filekey,
                     status=self.status_map(status),
-                    downloadUrl=downloadUrl,
                     createdAt=createdAt,
                 )
 
@@ -98,7 +94,7 @@ class EventUseCase:
                 exc_info=True,
             )
 
-            self.save_error_event(filekey, createdAt, downloadUrl, e)
+            self.save_error_event(filekey, createdAt, e)
             raise
 
 

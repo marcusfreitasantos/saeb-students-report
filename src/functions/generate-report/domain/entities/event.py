@@ -13,7 +13,6 @@ class Event:
     id: str
     filekey: str
     status: StatusType
-    downloadUrl: str
     createdAt: str
     error: str = None
 

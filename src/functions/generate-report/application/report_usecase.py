@@ -67,14 +67,11 @@ class ReportUseCase:
                 filekey,
                 "COMPLETED",
                 datetime.now().isoformat(),
-                self.s3_repository.download_url(self.output_bucket_name, pdf_key),
             )
 
             return ReportResult(
                 success=True,
                 message="Relatorio gerado com sucesso.",
-                pdf_download_url=self.s3_repository.download_url(self.output_bucket_name, pdf_key),
-                docx_download_url=self.s3_repository.download_url(self.output_bucket_name, docx_key),
             )
 
         
@@ -88,7 +85,6 @@ class ReportUseCase:
             event_usecase.save_error_event(
                 filekey=filekey,
                 createdAt=datetime.now().isoformat(),
-                downloadUrl=None,
                 error=e,
             )
 
