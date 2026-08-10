@@ -1,4 +1,5 @@
 import logging
+import random
 import re
 import uuid
 from datetime import datetime
@@ -32,15 +33,21 @@ class ReportUseCase:
             diagnosis = self.processor.process(spreadsheet_data)
             descriptors = diagnosis.critical_descriptors
             questions = self._group_by_descriptor(
-                self.db_repository.list_by_descriptors(
-                    self.questions_table_name,
-                    descriptors,
+                self._randomize_and_limit(
+                    self.db_repository.list_by_descriptors(
+                        self.questions_table_name,
+                        descriptors,
+                    ),
+                    limit=10,
                 )
             )
             interventions = self._group_by_descriptor(
-                self.db_repository.list_by_descriptors(
-                    self.interventions_table_name,
-                    descriptors,
+                self._randomize_and_limit(
+                    self.db_repository.list_by_descriptors(
+                        self.interventions_table_name,
+                        descriptors,
+                    ),
+                    limit=10,
                 )
             )
             artifacts = self.report_builder.build(diagnosis, questions, interventions)
@@ -113,7 +120,18 @@ class ReportUseCase:
 
             grouped_items.setdefault(descriptor, []).append(item)
 
+        for descriptor, descriptor_items in grouped_items.items():
+            random.shuffle(descriptor_items)
+            grouped_items[descriptor] = descriptor_items[:10]
+
         return grouped_items
+
+    def _randomize_and_limit(self, items: list[dict], limit: int = 10) -> list[dict]:
+        if len(items) <= limit:
+            random.shuffle(items)
+            return items
+
+        return random.sample(items, k=limit)
 
     def _report_base_key(self, filekey: str) -> str:
         key_without_bucket = filekey.split("/", 1)[1] if "/" in filekey else filekey

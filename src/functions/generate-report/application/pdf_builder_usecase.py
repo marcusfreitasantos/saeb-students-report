@@ -26,7 +26,7 @@ class ReportPdfBuilder:
         diagnosis,
         descriptors: list[str],
         selected_questions: dict[str, dict | None],
-        interventions: dict[str, list[dict]],
+        selected_interventions: dict[str, dict | None],
         chart: bytes,
         strip_image_tags: Callable[[str], str],
     ) -> bytes:
@@ -38,12 +38,12 @@ class ReportPdfBuilder:
             bottomMargin=self.margin,
             leftMargin=self.margin,
             rightMargin=self.margin,
-            title="RELATORIO PEDAGOGICO SAEB",
+            title="RELATORIO PEDAGÓGICO SAEB",
         )
 
         styles = self._styles()
         story = [
-            Paragraph("RELATORIO PEDAGOGICO SAEB", styles["Title"]),
+            Paragraph("RELATORIO PEDAGÓGICO SAEB", styles["Title"]),
             Spacer(1, 0.25 * inch),
             Paragraph("1. Indice de Prioridade Pedagogica (IPP)", styles["Heading1"]),
             Spacer(1, 0.12 * inch),
@@ -89,8 +89,8 @@ class ReportPdfBuilder:
         )
 
         for descriptor in descriptors:
-            descriptor_interventions = interventions.get(descriptor.upper(), [])
-            if not descriptor_interventions:
+            intervention = selected_interventions.get(descriptor.upper())
+            if not intervention:
                 story.append(
                     Paragraph(
                         f"<i>Sugestao de robotica nao cadastrada para o descritor {descriptor}.</i>",
@@ -100,27 +100,26 @@ class ReportPdfBuilder:
                 continue
 
             story.append(Paragraph(f"Estrategia para {descriptor}", styles["Heading2"]))
-            for intervention in descriptor_interventions:
-                if intervention.get("skill"):
-                    story.append(
-                        Paragraph(
-                            f"Habilidade: {self._escape(str(intervention.get('skill')))}",
-                            styles["ReportBody"],
-                        )
+            if intervention.get("skill"):
+                story.append(
+                    Paragraph(
+                        f"Habilidade: {self._escape(str(intervention.get('skill')))}",
+                        styles["ReportBody"],
                     )
+                )
 
-                for detail in intervention.get("intervention_data", []):
-                    title = self._escape(str(detail.get("title", "Sem titulo")))
-                    challenge = self._escape(str(detail.get("challenge", "N/A")))
-                    integration = self._escape(str(detail.get("integration", "N/A")))
-                    story.extend(
-                        [
-                            Paragraph(f"<b>{title}</b>", styles["ReportBody"]),
-                            Paragraph(f"Desafio: {challenge}", styles["ReportBody"]),
-                            Paragraph(f"IA: {integration}", styles["ReportBody"]),
-                            Spacer(1, 0.12 * inch),
-                        ]
-                    )
+            for detail in intervention.get("intervention_data", []):
+                title = self._escape(str(detail.get("title", "Sem titulo")))
+                challenge = self._escape(str(detail.get("challenge", "N/A")))
+                integration = self._escape(str(detail.get("integration", "N/A")))
+                story.extend(
+                    [
+                        Paragraph(f"<b>{title}</b>", styles["ReportBody"]),
+                        Paragraph(f"Desafio: {challenge}", styles["ReportBody"]),
+                        Paragraph(f"IA: {integration}", styles["ReportBody"]),
+                        Spacer(1, 0.12 * inch),
+                    ]
+                )
 
         document.build(story)
         return output.getvalue()

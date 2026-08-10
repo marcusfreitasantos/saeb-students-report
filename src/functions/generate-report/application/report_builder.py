@@ -1,14 +1,19 @@
 import io
+import os
 import random
 import re
 from dataclasses import dataclass
 from .pdf_builder_usecase import ReportPdfBuilder
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 from docx import Document
 from docx.shared import Cm, Inches
-
-plt.switch_backend("Agg")
 
 
 @dataclass
@@ -44,16 +49,20 @@ class ReportBuilder:
     ) -> ReportArtifacts:
         chart = self._build_priority_chart(diagnosis)
         selected_questions = self._select_questions(diagnosis.critical_descriptors, questions)
+        selected_interventions = self._select_interventions(
+            diagnosis.critical_descriptors,
+            interventions,
+        )
         docx_bytes = self._build_docx(
             diagnosis,
             selected_questions,
-            interventions,
+            selected_interventions,
             chart,
         )
         pdf_bytes = self._build_pdf(
             diagnosis,
             selected_questions,
-            interventions,
+            selected_interventions,
             chart,
         )
 
@@ -77,7 +86,7 @@ class ReportBuilder:
         self,
         diagnosis: Diagnosis,
         selected_questions: dict[str, dict | None],
-        interventions: dict[str, list[dict]],
+        selected_interventions: dict[str, dict | None],
         chart: bytes,
     ) -> bytes:
         document = Document()
@@ -106,7 +115,7 @@ class ReportBuilder:
             row_cells[2].text = f"{student.average}%"
 
         self._add_questions(document, diagnosis.critical_descriptors, selected_questions)
-        self._add_interventions(document, diagnosis.critical_descriptors, interventions)
+        self._add_interventions(document, diagnosis.critical_descriptors, selected_interventions)
 
         output = io.BytesIO()
         document.save(output)
@@ -141,14 +150,14 @@ class ReportBuilder:
         self,
         document: Document,
         descriptors: list[str],
-        interventions: dict[str, list[dict]],
+        selected_interventions: dict[str, dict | None],
     ) -> None:
         document.add_page_break()
         document.add_heading("4. Intervencoes de Robotica e IA", 1)
 
         for descriptor in descriptors:
-            descriptor_interventions = interventions.get(descriptor.upper(), [])
-            if not descriptor_interventions:
+            intervention = selected_interventions.get(descriptor.upper())
+            if not intervention:
                 run = document.add_paragraph().add_run(
                     f"Sugestao de robotica nao cadastrada para o descritor {descriptor}."
                 )
@@ -156,29 +165,28 @@ class ReportBuilder:
                 continue
 
             document.add_heading(f"Estrategia para {descriptor}", 2)
-            for intervention in descriptor_interventions:
-                if intervention.get("skill"):
-                    document.add_paragraph(f"Habilidade: {intervention.get('skill')}")
+            if intervention.get("skill"):
+                document.add_paragraph(f"Habilidade: {intervention.get('skill')}")
 
-                for detail in intervention.get("intervention_data", []):
-                    title = detail.get("title", "Sem titulo")
-                    paragraph = document.add_paragraph()
-                    paragraph.add_run(title).bold = True
-                    document.add_paragraph(f"Desafio: {detail.get('challenge', 'N/A')}")
-                    document.add_paragraph(f"IA: {detail.get('integration', 'N/A')}")
+            for detail in intervention.get("intervention_data", []):
+                title = detail.get("title", "Sem titulo")
+                paragraph = document.add_paragraph()
+                paragraph.add_run(title).bold = True
+                document.add_paragraph(f"Desafio: {detail.get('challenge', 'N/A')}")
+                document.add_paragraph(f"IA: {detail.get('integration', 'N/A')}")
 
     def _build_pdf(
         self,
         diagnosis: Diagnosis,
         selected_questions: dict[str, dict | None],
-        interventions: dict[str, list[dict]],
+        selected_interventions: dict[str, dict | None],
         chart: bytes,
     ) -> bytes:
         return ReportPdfBuilder().build(
             diagnosis,
             diagnosis.critical_descriptors,
             selected_questions,
-            interventions,
+            selected_interventions,
             chart,
             self._strip_image_tags,
         )
@@ -195,6 +203,19 @@ class ReportBuilder:
                 random.choice(descriptor_questions) if descriptor_questions else None
             )
         return selected_questions
+
+    def _select_interventions(
+        self,
+        descriptors: list[str],
+        interventions: dict[str, list[dict]],
+    ) -> dict[str, dict | None]:
+        selected_interventions = {}
+        for descriptor in descriptors:
+            descriptor_interventions = interventions.get(descriptor.upper(), [])
+            selected_interventions[descriptor.upper()] = (
+                random.choice(descriptor_interventions) if descriptor_interventions else None
+            )
+        return selected_interventions
 
     def _strip_image_tags(self, value: str) -> str:
         return re.sub(r"\[(.*?)\]", "", str(value)).strip()
