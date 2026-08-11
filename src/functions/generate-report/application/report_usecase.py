@@ -105,6 +105,17 @@ class ReportUseCase:
                 exc_info=True,
             )
 
+            try:
+                event_usecase = EventUseCase(self.db_repository, self.sqs_repository)
+                client_error = event_usecase.to_client_error(e)
+                event_usecase.save_error_event(
+                    filekey=filekey,
+                    createdAt=datetime.now().isoformat(),
+                    error=client_error,
+                )
+            except Exception:
+                logger.exception("Failed to persist error event for unexpected exception.")
+
             return ReportResult(
                 success=False,
                 message=f"Erro ao gerar relatorio: {e}",

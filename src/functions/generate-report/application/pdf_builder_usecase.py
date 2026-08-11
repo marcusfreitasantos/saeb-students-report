@@ -161,6 +161,17 @@ class ReportPdfBuilder:
                 spaceAfter=3,
             )
         )
+        if "Body" not in sample:
+            sample.add(
+                ParagraphStyle(
+                    name="Body",
+                    parent=sample["BodyText"],
+                    fontName="Helvetica",
+                    fontSize=10,
+                    leading=14,
+                    spaceAfter=6,
+                )
+            )
         return sample
 
     def _students_table(self, diagnosis) -> Table:
