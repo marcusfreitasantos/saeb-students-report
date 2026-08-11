@@ -34,7 +34,7 @@ class Diagnosis:
 
 @dataclass
 class ReportArtifacts:
-    docx: bytes
+    pdf: bytes
 
 
 class ReportBuilder:
@@ -52,15 +52,15 @@ class ReportBuilder:
             diagnosis.critical_descriptors,
             interventions,
         )
-        docx_bytes = self._build_docx(
+
+        pdf_bytes = self._build_pdf(
             diagnosis,
             selected_questions,
             selected_interventions,
             chart,
         )
 
-
-        return ReportArtifacts(docx=docx_bytes)
+        return ReportArtifacts(pdf=pdf_bytes)
 
     def _build_priority_chart(self, diagnosis: Diagnosis) -> bytes:
         chart_stream = io.BytesIO()

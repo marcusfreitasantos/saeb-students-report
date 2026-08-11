@@ -53,15 +53,8 @@ class ReportUseCase:
             artifacts = self.report_builder.build(diagnosis, questions, interventions)
             base_key = self._report_base_key(filekey)
 
-            docx_key = f"{base_key}/relatorio-saeb.docx"
             pdf_key = f"{base_key}/relatorio-saeb.pdf"
 
-            self.s3_repository.put_file(
-                self.output_bucket_name,
-                docx_key,
-                artifacts.docx,
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            )
             self.s3_repository.put_file(
                 self.output_bucket_name,
                 pdf_key,
