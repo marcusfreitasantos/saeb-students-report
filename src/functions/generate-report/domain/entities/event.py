@@ -15,6 +15,7 @@ class Event:
     status: StatusType
     createdAt: str
     error: str = None
+    elapsedTime: int = None
 
     def __post_init__(self):
         if not self.id or not isinstance(self.id, str):
@@ -25,6 +26,10 @@ class Event:
             raise ValueError("status cannot be empty and must be a StatusType type")
         if not self.createdAt or not isinstance(self.createdAt, str):
             raise ValueError("createdAt cannot be empty and must be a string")
+        if self.elapsedTime is not None and not isinstance(self.elapsedTime, int):
+            raise ValueError("elapsedTime must be an integer number of seconds")
+        if self.elapsedTime is not None and self.elapsedTime < 0:
+            raise ValueError("elapsedTime cannot be negative")
 
     def to_dict(self):
         item = asdict(self)

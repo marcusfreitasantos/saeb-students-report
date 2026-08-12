@@ -1,5 +1,7 @@
 import uuid
 import json
+from datetime import datetime
+from typing import Optional
 from domain.entities.event import Event
 from domain.entities.event import StatusType
 from infrastructure.config.settings import settings
@@ -54,6 +56,7 @@ class EventUseCase:
             status=StatusType.CANCELLED,
             createdAt=createdAt,
             error=str(error),
+            elapsedTime=self._build_elapsed_time(filekey, createdAt),
         )
 
         try:
@@ -70,11 +73,16 @@ class EventUseCase:
     def build(self, filekey: str, status: str, createdAt: str) -> Event:
         try:
             try:
+                elapsed_time = None
+                if status != "STARTED":
+                    elapsed_time = self._build_elapsed_time(filekey, createdAt)
+
                 new_event = Event(
                     id=str(uuid.uuid4()),
                     filekey=filekey,
                     status=self.status_map(status),
                     createdAt=createdAt,
+                    elapsedTime=elapsed_time,
                 )
 
                 self.db_repository.save(self.reports_table_name, new_event.to_dict())
@@ -100,3 +108,33 @@ class EventUseCase:
 
     def get_item(self, filekey: str): 
         return self.db_repository.get(self.reports_table_name, filekey)
+
+    def _parse_iso_datetime(self, value: str) -> Optional[datetime]:
+        if not value or not isinstance(value, str):
+            return None
+
+        try:
+            return datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError:
+            logger.warning(f"Invalid ISO datetime for elapsedTime parsing: {value}")
+            return None
+
+    def _build_elapsed_time(self, filekey: str, createdAt: str) -> Optional[int]:
+        started_event_time = None
+        for item in self.get_item(filekey):
+            if item.get("status") != "STARTED":
+                continue
+
+            started_event_time = self._parse_iso_datetime(item.get("createdAt", ""))
+            if started_event_time:
+                break
+
+        if not started_event_time:
+            return None
+
+        current_time = self._parse_iso_datetime(createdAt)
+        if not current_time:
+            return None
+
+        elapsed_seconds = round((current_time - started_event_time).total_seconds())
+        return elapsed_seconds if elapsed_seconds >= 0 else None
