@@ -3,6 +3,7 @@ from application.report_usecase import ReportUseCase
 import json
 import re
 from datetime import datetime
+from decimal import Decimal
 from infrastructure.config.settings import settings
 
 class EventController:
@@ -60,6 +61,27 @@ class EventController:
             events = EventUseCase(self.db_client, self.sqs_client)
             items = events.get_item(filekey)
 
+            # Convert Decimal objects (from DynamoDB) to native Python types
+            def convert_decimals(obj):
+                if isinstance(obj, Decimal):
+                    # convert to int when no fractional part, else float
+                    try:
+                        integral = obj.to_integral()
+                        if obj == integral:
+                            return int(obj)
+                    except Exception:
+                        pass
+                    return float(obj)
+                if isinstance(obj, dict):
+                    return {k: convert_decimals(v) for k, v in obj.items()}
+                if isinstance(obj, list):
+                    return [convert_decimals(v) for v in obj]
+                return obj
+
+            items = convert_decimals(items)
+
+            print(f"Retrieved items for filekey {filekey}: {items}")
+
             # For completed events, resolve download URLs on demand by listing S3
             try:
                 key_without_bucket = filekey.split("/", 1)[1] if "/" in filekey else filekey
@@ -79,15 +101,11 @@ class EventController:
 
                 for item in items:
                     if str(item.get("status", "")).upper() == "COMPLETED":
-                        # find pdf/docx keys under the prefix
                         pdf_key = next((k for k in available_keys if k.endswith("relatorio-saeb.pdf")), None)
-                        docx_key = next((k for k in available_keys if k.endswith("relatorio-saeb.docx")), None)
 
                         download_urls = {}
                         if pdf_key:
                             download_urls["pdf"] = self.s3_client.download_url(bucket, pdf_key)
-                        if docx_key:
-                            download_urls["docx"] = self.s3_client.download_url(bucket, docx_key)
 
                         if download_urls:
                             item["downloadUrl"] = download_urls
