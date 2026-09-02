@@ -75,7 +75,7 @@ class DynamoDBClient:
             )
             raise
 
-    def list_by_descriptors(self, table_name: str, descriptors: list[str]):
+    def list_by_descriptors(self, table_name: str, descriptors: list[str], projection: list[str] | None = None):
         try:
             if not descriptors:
                 return []
@@ -93,7 +93,22 @@ class DynamoDBClient:
                 )
 
             items = []
-            scan_params = {"FilterExpression": filter_expression}
+            # Build scan params; include ProjectionExpression when requested to reduce payload
+            if projection:
+                expr_names = {}
+                proj_parts = []
+                for i, attr in enumerate(projection):
+                    key = f"#p{i}"
+                    expr_names[key] = str(attr)
+                    proj_parts.append(key)
+
+                scan_params = {
+                    "FilterExpression": filter_expression,
+                    "ProjectionExpression": ", ".join(proj_parts),
+                    "ExpressionAttributeNames": expr_names,
+                }
+            else:
+                scan_params = {"FilterExpression": filter_expression}
 
             while True:
                 response = table.scan(**scan_params)

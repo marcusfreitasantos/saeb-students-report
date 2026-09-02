@@ -2,6 +2,7 @@ import logging
 import random
 import re
 import uuid
+import time
 from datetime import datetime
 from .report_builder import ReportBuilder
 from .sheet_processor_usecase import SpreadsheetReportProcessor
@@ -29,28 +30,48 @@ class ReportUseCase:
     
     def build(self, filekey: str) -> ReportResult:
         try:
+            start_total = time.time()
+
+            t0 = time.time()
             spreadsheet_data = self.s3_repository.get_file(self.input_bucket_name, filekey)
+            t1 = time.time()
+            logger.info(f"S3 download took {t1 - t0:.2f}s for {filekey}")
+
+            t0 = time.time()
             diagnosis = self.processor.process(spreadsheet_data)
+            t1 = time.time()
+            logger.info(f"Spreadsheet processing took {t1 - t0:.2f}s for {filekey}")
+
             descriptors = diagnosis.critical_descriptors
-            questions = self._group_by_descriptor(
-                self._randomize_and_limit(
-                    self.db_repository.list_by_descriptors(
-                        self.questions_table_name,
-                        descriptors,
-                    ),
-                    limit=10,
-                )
+
+            # request only needed attributes to reduce scan payload
+            question_projection = ["descriptor", "description", "options"]
+            intervention_projection = ["descriptor", "skill", "intervention_data"]
+
+            t0 = time.time()
+            questions_items = self.db_repository.list_by_descriptors(
+                self.questions_table_name,
+                descriptors,
+                projection=question_projection,
             )
-            interventions = self._group_by_descriptor(
-                self._randomize_and_limit(
-                    self.db_repository.list_by_descriptors(
-                        self.interventions_table_name,
-                        descriptors,
-                    ),
-                    limit=10,
-                )
+            questions = self._group_by_descriptor(self._randomize_and_limit(questions_items, limit=10))
+            t1 = time.time()
+            logger.info(f"Questions lookup took {t1 - t0:.2f}s")
+
+            t0 = time.time()
+            interventions_items = self.db_repository.list_by_descriptors(
+                self.interventions_table_name,
+                descriptors,
+                projection=intervention_projection,
             )
+            interventions = self._group_by_descriptor(self._randomize_and_limit(interventions_items, limit=10))
+            t1 = time.time()
+            logger.info(f"Interventions lookup took {t1 - t0:.2f}s")
+
+            t0 = time.time()
             artifacts = self.report_builder.build(diagnosis, questions, interventions)
+            t1 = time.time()
+            logger.info(f"Report artifacts build took {t1 - t0:.2f}s")
             base_key = self._report_base_key(filekey)
 
             pdf_key = f"{base_key}/relatorio-saeb.pdf"
@@ -62,12 +83,17 @@ class ReportUseCase:
                 "application/pdf",
             )
 
+            logger.info(f"S3 upload completed for {pdf_key}")
+
             event_usecase = EventUseCase(self.db_repository, self.sqs_repository)
             event_usecase.build(
                 filekey,
                 "COMPLETED",
                 datetime.now().isoformat(),
             )
+
+            total_elapsed = time.time() - start_total
+            logger.info(f"Total report build time for {filekey}: {total_elapsed:.2f}s")
 
             return ReportResult(
                 success=True,

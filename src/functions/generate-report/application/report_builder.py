@@ -46,7 +46,7 @@ class ReportBuilder:
         questions: dict[str, list[dict]],
         interventions: dict[str, list[dict]],
     ) -> ReportArtifacts:
-        chart = self._build_priority_chart(diagnosis)
+        #chart = self._build_priority_chart(diagnosis)
         selected_questions = self._select_questions(diagnosis.critical_descriptors, questions)
         selected_interventions = self._select_interventions(
             diagnosis.critical_descriptors,
@@ -57,7 +57,6 @@ class ReportBuilder:
             diagnosis,
             selected_questions,
             selected_interventions,
-            chart,
         )
 
         return ReportArtifacts(pdf=pdf_bytes)
@@ -174,14 +173,12 @@ class ReportBuilder:
         diagnosis: Diagnosis,
         selected_questions: dict[str, dict | None],
         selected_interventions: dict[str, dict | None],
-        chart: bytes,
     ) -> bytes:
         return ReportPdfBuilder().build(
             diagnosis,
             diagnosis.critical_descriptors,
             selected_questions,
             selected_interventions,
-            chart,
             self._strip_image_tags,
         )
 
