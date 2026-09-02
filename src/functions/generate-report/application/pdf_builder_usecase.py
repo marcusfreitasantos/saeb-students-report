@@ -27,6 +27,7 @@ class ReportPdfBuilder:
         descriptors: list[str],
         selected_questions: dict[str, dict | None],
         selected_interventions: dict[str, dict | None],
+        chart: bytes,
         strip_image_tags: Callable[[str], str],
     ) -> bytes:
         output = io.BytesIO()
@@ -46,8 +47,8 @@ class ReportPdfBuilder:
             Spacer(1, 0.25 * inch),
             Paragraph("1. Indice de Prioridade Pedagogica (IPP)", styles["Heading1"]),
             Spacer(1, 0.12 * inch),
-            # Image(io.BytesIO(chart), width=6 * inch, height=2.67 * inch),
-            # Spacer(1, 0.25 * inch),
+            Image(io.BytesIO(chart), width=6 * inch, height=2.67 * inch),
+            Spacer(1, 0.25 * inch),
             Paragraph("2. Desempenho por Estudante", styles["Heading1"]),
             Spacer(1, 0.12 * inch),
             self._students_table(diagnosis),
