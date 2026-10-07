@@ -16,10 +16,11 @@ def seed_interventions_table():
         with open(JSON_PATH, 'r', encoding='utf-8') as file:
             data = json.load(file)
             new_json_data = []
-            new_intervention_details = []
+            
 
             for intervention in data["eixos_saeb"]:                
                 for details in intervention["descritores"]:
+                    new_intervention_details = []
                     
                     for detail in details["intervencoes"]:
                         new_intervention_details.append( {

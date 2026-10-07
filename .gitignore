@@ -16,7 +16,7 @@ __pycache__/
 docker/
 
 # Localstack
-localstack/
+localstack/data
 
 # Terraform
 .terraform/

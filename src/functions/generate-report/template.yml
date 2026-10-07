@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  GenerateReportFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: main.handler
+      Runtime: python3.12
+      Timeout: 300
+      MemorySize: 512
+      Environment:
+        Variables:
+          DYNAMODB_ENDPOINT: http://host.docker.internal:4566
+          BUCKET_ENDPOINT: http://host.docker.internal:4566
+          SQS_ENDPOINT: http://host.docker.internal:4566
+          SQS_QUEUE_NAME: saeb-report-jobs-local
+          DYNAMO_QUESTIONS_TABLE: saeb_questions_local
+          DYNAMO_INTERVENTIONS_TABLE: saeb_interventions_local
+          DYNAMO_REPORTS_TABLE: saeb_reports_local
+          S3_INPUT_BUCKET_NAME: saeb-report-assets
+          S3_OUTPUT_BUCKET_NAME: saeb-student-reports
+          SQS_QUEUE_URL: http://host.docker.internal:4566/000000000000/saeb-report-jobs-local
+      Events:
+        GetReportById:
+          Type: HttpApi
+          Properties:
+            Path: /report/{key+}
+            Method: get
