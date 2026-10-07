@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  CaptureLeadsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: main.handler
+      Runtime: python3.12
+      Timeout: 30
+      Environment:
+        Variables:
+          DYNAMODB_ENDPOINT: http://host.docker.internal:4566
+          DYNAMO_LEADS_TABLE: saeb_leads_local
+          AWS_REGION: sa-east-1
+      Events:
+        CreateLead:
+          Type: HttpApi
+          Properties:
+            Path: /leads/create
+            Method: post

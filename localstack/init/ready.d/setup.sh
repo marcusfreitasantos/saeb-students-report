@@ -119,6 +119,12 @@ create_table_if_not_exists saeb_reports_local \
   --global-secondary-indexes '[{"IndexName":"GetByFilekey","KeySchema":[{"AttributeName":"filekey","KeyType":"HASH"},{"AttributeName":"createdAt","KeyType":"RANGE"}],"Projection":{"ProjectionType":"ALL"}}]' \
   --billing-mode PAY_PER_REQUEST
 
+create_table_if_not_exists saeb_leads_local \
+  --table-name saeb_leads_local \
+  --attribute-definitions AttributeName=id,AttributeType=S \
+  --key-schema AttributeName=id,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST
+
 echo "DynamoDB tables created successfully!"
 
 # Create SQS queues
@@ -127,5 +133,4 @@ echo "Creating SQS queues..."
 awslocal $AWS_REGION_OPTION sqs create-queue --queue-name saeb-report-jobs-local || true
 
 echo "SQS queues created successfully!"
-
 

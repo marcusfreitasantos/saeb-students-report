@@ -54,6 +54,13 @@ cd /Users/marcusfreitas/Projetos/S/saeb/backend/src/functions/manage-report-ques
 sam local invoke ManageReportQuestionsFunction -e ../../../../src/functions/manage-report-questions/events/event.json
 ```
 
+### Capture Leads
+
+```bash
+cd /Users/marcusfreitas/Projetos/S/saeb/backend/src/functions/capture-leads
+sam local invoke CaptureLeadsFunction -e ../../../../src/functions/capture-leads/events/event.json
+```
+
 ## Start SAM Local API
 
 You can start a local API for each SAM template using `sam local start-api`.
@@ -96,6 +103,21 @@ Then invoke endpoints such as:
 ```bash
 curl http://127.0.0.1:3003/questions/all
 curl -X POST http://127.0.0.1:3003/questions/create -H "Content-Type: application/json" -d @events/event.json
+```
+
+### Capture Leads API
+
+```bash
+cd /Users/marcusfreitas/Projetos/S/saeb/backend/src/functions/capture-leads
+sam local start-api --template template.yml --port 3004
+```
+
+Then invoke the endpoint:
+
+```bash
+curl -X POST http://127.0.0.1:3004/leads/create \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Maria Silva","email":"maria@example.com","phone":"+5582999999999","graduation":"ensino médio completo","occupation":"Professora"}'
 ```
 
 ## Notes
